@@ -8,7 +8,9 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "deploy": "ng build --prod --base-href \"https://zarrev.github.io/PWA/\" && ngh --no-silent"
+    "buildGHP": "ng build --prod --base-href \"https://zarrev.github.io/\"",
+    "deploy": "ngh --branch=master",
+    "gencomp": "ng generate component"
   },
   "private": true,
   "dependencies": {
@@ -22,7 +24,7 @@
     "@angular/router": "~7.2.0",
     "bootstrap": "^4.3.1",
     "core-js": "^2.5.4",
-    "jquery": "^3.3.1",
+    "jquery": "^3.0.0",
     "ngx-bootstrap": "^3.2.0",
     "popper.js": "^1.14.7",
     "rxjs": "~6.3.3",
