@@ -55,3 +55,7 @@
 *:after {
   box-sizing: content-box;
 }
+
+.heroes {
+  margin: auto;
+}
