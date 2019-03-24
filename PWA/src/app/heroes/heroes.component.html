@@ -4,5 +4,12 @@
     <a routerLink="/toh/detail/{{hero.id}}">
       <span><span class="badge">{{hero.id}}</span> {{hero.name}}</span>
     </a>
+    <button class="delete" title="delete hero" (click)="delete(hero)">x</button>
   </li>
 </ul>
+<div style="text-align: center">
+  <label>Hero name:
+    <input #heroName />
+  </label>
+  <button (click)="add(heroName.value); heroName.value=''">Add</button>
+</div>

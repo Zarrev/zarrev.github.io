@@ -1,1 +1,10 @@
+* {
+  text-align: center;
+  align-items: center;
+}
 
+.block-box {
+  height: min-content;
+  width: min-content;
+  margin: auto;
+}

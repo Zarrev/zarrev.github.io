@@ -1,11 +1,17 @@
-<div *ngIf="hero">
-  <h2>{{hero.name | uppercase}} Details</h2>
-  <div><span>ID: </span>{{hero.id}}</div>
-  <div>
-    <label>name:
-      <input [(ngModel)]="hero.name" placeholder="Name"/>
-    </label>
+<div>
+  <div class="block-box" *ngIf="hero">
+    <h2>{{hero.name | uppercase}} Details</h2>
+    <div>
+      <label>ID:
+        <input value="{{hero.id}}" disabled/>
+      </label>
+    </div>
+    <div>
+      <label>name:
+        <input [(ngModel)]="hero.name" placeholder="Name"/>
+      </label>
+    </div>
+    <button (click)="save()">save</button>
+    <button (click)="goBack()">go back</button>
   </div>
-  <button (click)="save()">save</button>
-  <button (click)="goBack()">go back</button>
 </div>

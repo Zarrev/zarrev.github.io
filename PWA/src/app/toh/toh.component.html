@@ -1,10 +1,10 @@
-  <div class="row">
-    <h1>{{title}}</h1>
+<div align="center">
+  <h1 >{{title}}</h1>
+  <div  style="padding-bottom: 15px">
+    <button type="button" class="btn btn-outline-primary margin" routerLink="/toh/heroes">My Heroes</button>
+    <button type="button" class="btn btn-outline-primary margin" routerLink="/toh/dashboard">Hero Dashboard</button>
   </div>
-  <div class="row">
-    <button type="button" class="btn btn-outline-primary" routerLink="/toh/heroes">My Heroes</button>
-    <button type="button" class="btn btn-outline-primary" routerLink="/toh/dashboard">Hero Dashboard</button>
-  </div>
-  <div class="row">
-    <app-messages></app-messages>
-  </div>
+</div>
+  <router-outlet></router-outlet>
+<app-messages align="center"></app-messages>
+

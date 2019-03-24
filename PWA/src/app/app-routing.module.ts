@@ -7,12 +7,13 @@ import {DashboardComponent} from './dashboard/dashboard.component';
 import {HeroDetailComponent} from './hero-detail/hero-detail.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: '/page1', pathMatch: 'full' },
   { path: 'page1', component: Page1Component },
-  { path: 'toh', component: TohComponent },
-  { path: 'toh/heroes', component: HeroesComponent },
-  { path: 'toh/dashboard', component: DashboardComponent },
-  { path: 'toh/detail/:id', component: HeroDetailComponent },
-  { path: '', redirectTo: '/page1', pathMatch: 'full' }
+  { path: 'toh', component: TohComponent, children: [
+      { path: 'heroes', component: HeroesComponent },
+      { path: 'dashboard', component: DashboardComponent },
+      ]},
+  { path: 'toh/detail/:id', component: HeroDetailComponent }
 ];
 
 @NgModule({
