@@ -1,0 +1,10 @@
+<!--<img src="{{ this.user.photoUrl }}">-->
+<div *ngIf="user; else login">
+  <img [src]="user.photoUrl" alt="src/assets/img/sleep.svg">
+  <div>
+    <h4>{{ user.name }}</h4>
+    <p>{{ user.email }}</p>
+  </div>
+  <button (click)="signOut()">Logout</button>
+</div>
+<ng-template #login><button (click)="signIn()">Login with FaceBook</button></ng-template>

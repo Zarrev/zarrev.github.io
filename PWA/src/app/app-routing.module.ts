@@ -5,6 +5,7 @@ import {TohComponent} from './toh/toh.component';
 import {HeroesComponent} from './heroes/heroes.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {HeroDetailComponent} from './hero-detail/hero-detail.component';
+import {FacebookAuthComponent} from './facebook-auth/facebook-auth.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/page1', pathMatch: 'full' },
@@ -13,7 +14,8 @@ const routes: Routes = [
       { path: 'heroes', component: HeroesComponent },
       { path: 'dashboard', component: DashboardComponent },
       ]},
-  { path: 'toh/detail/:id', component: HeroDetailComponent }
+  { path: 'toh/detail/:id', component: HeroDetailComponent },
+  { path: 'auth', component: FacebookAuthComponent }
 ];
 
 @NgModule({

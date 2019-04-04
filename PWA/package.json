@@ -3,14 +3,14 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --ssl --ssl-key D:\\2018_19_2_egyetem\\Önlab\\certificate\\localhost.key  --ssl-cert D:\\2018_19_2_egyetem\\Önlab\\certificate\\localhost.crt",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "buildGHP": "ng build --prod --base-href \"https://zarrev.github.io/\"",
     "deploy": "ngh --branch=master",
-    "gencomp": "ng generate component"
+    "start-http": "ng serve"
   },
   "private": true,
   "dependencies": {
@@ -23,6 +23,7 @@
     "@angular/platform-browser-dynamic": "~7.2.0",
     "@angular/router": "~7.2.0",
     "angular-in-memory-web-api": "^0.8.0",
+    "angularx-social-login": "^1.2.6",
     "bootstrap": "^4.3.1",
     "core-js": "^2.5.4",
     "jquery": "^3.0.0",

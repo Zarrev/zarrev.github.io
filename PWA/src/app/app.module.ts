@@ -18,6 +18,20 @@ import {HttpClientInMemoryWebApiModule} from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
 import { HeroSearchComponent } from './hero-search/hero-search.component';
 
+import { SocialLoginModule, AuthServiceConfig } from 'angularx-social-login';
+import { FacebookLoginProvider } from 'angularx-social-login';
+import { FacebookAuthComponent } from './facebook-auth/facebook-auth.component';
+
+export function provideConfig() {
+  const config = new AuthServiceConfig([
+    {
+      id: FacebookLoginProvider.PROVIDER_ID,
+      provider: new FacebookLoginProvider('551502018665214')
+    }
+  ]);
+  return config;
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,6 +43,7 @@ import { HeroSearchComponent } from './hero-search/hero-search.component';
     MessagesComponent,
     DashboardComponent,
     HeroSearchComponent,
+    FacebookAuthComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,9 +52,15 @@ import { HeroSearchComponent } from './hero-search/hero-search.component';
     HttpClientModule,
     HttpClientInMemoryWebApiModule.forRoot(
       InMemoryDataService, { dataEncapsulation: false }
-    )
+    ),
+    SocialLoginModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: AuthServiceConfig,
+      useFactory: provideConfig
+    }
+  ],
   bootstrap: [AppComponent]
 })
 
