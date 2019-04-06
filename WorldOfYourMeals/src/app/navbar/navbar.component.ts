@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import { AuthComponent } from '../auth/auth.component';
+import {ScrollerService} from '../scroller.service';
+import {AuthorizationService} from '../authorization.service';
 
 @Component({
   selector: 'app-navbar',
@@ -10,12 +11,8 @@ export class NavbarComponent implements OnInit {
 
   @Input() title: string;
 
-  constructor() { }
+  constructor(public scrollerService: ScrollerService, public authorizationService: AuthorizationService) { }
 
   ngOnInit() {
-  }
-
-  signIn() {
-    alert('Not implemented.');
   }
 }

@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {ScrollerService} from '../scroller.service';
+import apply = Reflect.apply;
 
 @Component({
   selector: 'app-scroller',
@@ -7,28 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ScrollerComponent implements OnInit {
 
-  private clicked = false;
-
-  constructor() { }
+  constructor(public scrollerService: ScrollerService) {
+  }
 
   ngOnInit() {
-  }
-
-  private scrollUp() {
-    window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
-  }
-
-  private scrollToView(target: string) {
-    document.getElementById(target).scrollIntoView({behavior: 'smooth'});
-  }
-
-  scrollFunc(target: string) {
-    const img = document.getElementById('arrow');
-    img.setAttribute('style', 'filter: invert(100%); transform: rotate(180deg);');
-    if (this.clicked) {
-      this.scrollToView(target);
-      return;
-    }
-    this.scrollUp();
+    this.scrollerService.findImageElement();
+    this.scrollerService.scrollListener();
   }
 }
