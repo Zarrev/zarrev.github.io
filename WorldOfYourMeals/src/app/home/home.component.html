@@ -1,49 +1,26 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <span class="navbar-brand mb-0 h1">
-      <img style="filter: invert(100%)" src="/assets/img/sharp-fastfood-24px.svg" width="30" height="30"
-           class="d-inline-block align-top" alt="">
-      {{title}}
-    </span>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Sign In</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">About</a>
-      </li>
-    </ul>
-  </div>
-</nav>
-<div class="container">
-  <div class="row">
-    <div class="jumbotron">
-      <div class="row">
-        <div class="col-sm">
-          <h2>Short Introduction</h2>
-        </div>
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="jumbotron flex-fill">
+      <div class="col">
+        <h2>Short Introduction</h2>
       </div>
-      <div class="row align-items-center">
-        <div class="col-lg">
-          <dd>This application helps to you save your experience with your meals.</dd>
-          <dt>What does it mean?</dt>
-          <dd>You can take a picture about your food, rate it and save it. This application will save your location as
-            well, so
-            you can see where you ate your best meals.
-          </dd>
-        </div>
+      <div class="col align-items-center">
+        <dd>This application helps to you save your experience with your meals.</dd>
+        <dt>What does it mean?</dt>
+        <dd>You can take a picture about your food, rate it and save it. This application will save your location as
+          well, so
+          you can see where you ate your best meals.
+        </dd>
       </div>
     </div>
   </div>
   <div class="row justify-content-center top-buffer">
     <app-auth></app-auth>
   </div>
+  <div class="row justify-content-center top-buffer">
+    <button type="button" class="btn btn-dark rounded-circle" routerLink="/about">
+      <img style="filter: invert(100%)" src="assets/img/baseline-arrow_downward-24px.svg" width="30" height="30"
+           class="d-inline-flex align-items-center" alt="">
+    </button>
+  </div>
 </div>
-
