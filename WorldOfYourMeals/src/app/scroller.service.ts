@@ -9,12 +9,15 @@ export class ScrollerService {
   private clicked = false;
   private lastScrollTop = pageYOffset;
   private img: HTMLElement;
+  private hiddenElement: HTMLElement;
+  private isVisible = false;
 
   constructor() {
   }
 
   findImageElement(): void {
     this.img = document.getElementById('arrow');
+    this.hiddenElement = document.getElementById('scrollerdiv');
   }
 
   private scrollUp() {
@@ -27,25 +30,34 @@ export class ScrollerService {
 
   scrollFunc(target: string) {
     if (this.clicked) {
-      this.img.setAttribute('style', 'filter: invert(100%);');
       this.scrollUp();
       this.clicked = false;
       return;
     }
-    this.img.setAttribute('style', 'filter: invert(100%);   transform: rotate(180deg);');
     this.scrollToView(target);
     this.clicked = true;
   }
 
   private applyChangeOfScroller() {
     const st = window.pageYOffset || document.documentElement.scrollTop;
-    if (st > this.lastScrollTop) {
+    const height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+
+    if (st >= height / 4 && !this.isVisible) {
+      this.hiddenElement.setAttribute('style', 'display: initial;');
+      this.isVisible = true;
+    } else if (st < height / 4 && this.isVisible) {
+      this.hiddenElement.setAttribute('style', 'display: none;');
+      this.isVisible = false;
+    }
+
+    if (this.lastScrollTop > 10 * this.img.offsetTop) {
       this.clicked = true;
       this.img.setAttribute('style', 'filter: invert(100%);   transform: rotate(180deg);');
-    } else if (this.lastScrollTop - this.img.offsetTop <= 0) {
+    } else {
       this.clicked = false;
       this.img.setAttribute('style', 'filter: invert(100%);');
     }
+
     this.lastScrollTop = st <= 0 ? 0 : st;
   }
 
