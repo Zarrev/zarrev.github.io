@@ -12,6 +12,7 @@ import { AuthComponent } from './auth/auth.component';
 import { AboutComponent } from './about/about.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AppRoutingModule } from './app-routing.module';
+import { ScrollerComponent } from './scroller/scroller.component';
 
 export function provideConfig() {
   const config = new AuthServiceConfig([
@@ -29,7 +30,8 @@ export function provideConfig() {
     HomeComponent,
     AuthComponent,
     AboutComponent,
-    NavbarComponent
+    NavbarComponent,
+    ScrollerComponent
   ],
   imports: [
     BrowserModule,
