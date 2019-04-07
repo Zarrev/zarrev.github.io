@@ -9,7 +9,7 @@ import {AuthorizationService} from '../authorization.service';
 export class HomeComponent implements OnInit {
   @Input() title: string;
 
-  constructor(private authorizationService: AuthorizationService) {
+  constructor(public authorizationService: AuthorizationService) {
   }
 
   ngOnInit() {}
