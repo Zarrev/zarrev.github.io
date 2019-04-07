@@ -1,5 +1,4 @@
 import {Injectable} from '@angular/core';
-import {passBoolean} from 'protractor/built/util';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +8,7 @@ export class ScrollerService {
   private clicked = false;
   private lastScrollTop = pageYOffset;
   private img: HTMLElement;
-  private hiddenElement: HTMLElement;
+  private searchedElement: HTMLElement;
   private isVisible = false;
 
   constructor() {
@@ -17,7 +16,7 @@ export class ScrollerService {
 
   findImageElement(): void {
     this.img = document.getElementById('arrow');
-    this.hiddenElement = document.getElementById('scrollerdiv');
+    this.searchedElement = document.getElementById('scrollerdiv');
   }
 
   private scrollUp() {
@@ -44,10 +43,10 @@ export class ScrollerService {
     const height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
 
     if (st >= height / 4 && !this.isVisible) {
-      this.hiddenElement.setAttribute('style', 'display: initial;');
+      this.searchedElement.setAttribute('style', 'display: initial;');
       this.isVisible = true;
     } else if (st < height / 4 && this.isVisible) {
-      this.hiddenElement.setAttribute('style', 'display: none;');
+      this.searchedElement.setAttribute('style', 'display: none;');
       this.isVisible = false;
     }
 

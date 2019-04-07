@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {ScrollerService} from '../scroller.service';
-import apply = Reflect.apply;
 
 @Component({
   selector: 'app-scroller',

@@ -25,7 +25,6 @@
     "@types/jquery": "^3.3.29",
     "angularx-social-login": "^1.2.6",
     "bootstrap": "^4.3.1",
-    "canvasjs": "^1.8.1",
     "core-js": "^2.5.4",
     "jquery": "^3.3.1",
     "popper.js": "^1.15.0",
