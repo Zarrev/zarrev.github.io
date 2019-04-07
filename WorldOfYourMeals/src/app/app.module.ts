@@ -8,11 +8,12 @@ import { FacebookLoginProvider } from 'angularx-social-login';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
-import { AuthComponent } from './auth/auth.component';
+import { ProfileComponent } from './profile/profile.component';
 import { AboutComponent } from './about/about.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ScrollerComponent } from './scroller/scroller.component';
+import { DiagramComponent } from './diagram/diagram.component';
 
 export function provideConfig() {
   const config = new AuthServiceConfig([
@@ -28,10 +29,11 @@ export function provideConfig() {
   declarations: [
     AppComponent,
     HomeComponent,
-    AuthComponent,
+    ProfileComponent,
     AboutComponent,
     NavbarComponent,
-    ScrollerComponent
+    ScrollerComponent,
+    DiagramComponent
   ],
   imports: [
     BrowserModule,

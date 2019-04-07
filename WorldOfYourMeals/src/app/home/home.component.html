@@ -15,7 +15,12 @@
     </div>
   </div>
   <div class="row justify-content-center top-buffer">
-    <app-auth></app-auth>
+    <div *ngIf="authorizationService.isLoggedIn; else login">
+      <button (click)="authorizationService.signOut()" type="button" class="btn btn-outline-primary rounded">Logout</button>
+    </div>
+    <ng-template #login>
+      <button (click)="authorizationService.signIn()" type="button" class="btn btn-outline-primary rounded">Facebook LogIn</button>
+    </ng-template>
   </div>
 </div>
 <app-about id="about"></app-about>

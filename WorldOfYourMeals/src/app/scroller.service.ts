@@ -38,6 +38,7 @@ export class ScrollerService {
     this.clicked = true;
   }
 
+  // iOS-en nem akar tisztességesen működni, ha rámegyek a gombra és még látszik a gomb, nem fordul meg a nyil, nem csúszik, hanem ugrik.
   private applyChangeOfScroller() {
     const st = window.pageYOffset || document.documentElement.scrollTop;
     const height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
