@@ -14,6 +14,9 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ScrollerComponent } from './scroller/scroller.component';
 import { DiagramComponent } from './diagram/diagram.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { SettingProfileComponent } from './setting-profile/setting-profile.component';
+import { ReactiveFormsModule} from '@angular/forms';
 
 export function provideConfig() {
   const config = new AuthServiceConfig([
@@ -33,12 +36,15 @@ export function provideConfig() {
     AboutComponent,
     NavbarComponent,
     ScrollerComponent,
-    DiagramComponent
+    DiagramComponent,
+    EditProfileComponent,
+    SettingProfileComponent
   ],
   imports: [
     BrowserModule,
     SocialLoginModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
     // BrowserAnimationsModule
   ],
   providers: [

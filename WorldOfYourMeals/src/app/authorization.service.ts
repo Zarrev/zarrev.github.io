@@ -1,22 +1,27 @@
-import {Injectable} from '@angular/core';
+import {Compiler, Injectable} from '@angular/core';
 import {AuthService, FacebookLoginProvider, SocialUser} from 'angularx-social-login';
-import {Observable} from 'rxjs';
+import {Observable, Subscription} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthorizationService {
 
+  private subscription: Subscription;
   private user: SocialUser;
   private loggedIn: boolean;
   private coverUrl = '/assets/img/twotone-photo_size_select_actual-24px.svg';
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private compiler: Compiler) {
+    this.subscription = this.authorizationState.subscribe(user => {
+      this.user = user;
+      this.loggedIn = user != null;
+    });
   }
 
   signIn(): void {
     this.authService.signIn(FacebookLoginProvider.PROVIDER_ID).finally(() => {
-        this.authorizationState.subscribe(user => {
+        this.subscription = this.authorizationState.subscribe(user => {
           this.user = user;
           this.loggedIn = user != null;
         });
@@ -24,13 +29,13 @@ export class AuthorizationService {
     );
   }
 
-  deAuth(): void {
-    this.user = null;
-    this.loggedIn = false;
-  }
-
   signOut(user: SocialUser, loggedIn: boolean): void {
-    this.authService.signOut().finally(() => this.deAuth());
+    this.authService.signOut().finally(() => {
+      this.user = null;
+      this.loggedIn = false;
+    });
+    this.subscription.unsubscribe();
+    this.compiler.clearCache();
   }
 
   get authorizationState(): Observable<SocialUser> {

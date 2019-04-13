@@ -8,11 +8,15 @@ import {ScrollerService} from '../scroller.service';
 })
 export class ScrollerComponent implements OnInit {
 
-  constructor(public scrollerService: ScrollerService) {
+  constructor(private scrollerService: ScrollerService) {
   }
 
   ngOnInit() {
     this.scrollerService.findImageElement();
     this.scrollerService.scrollListener();
+  }
+
+  public scrollToAbout(): void {
+    this.scrollerService.scrollFunc('about');
   }
 }

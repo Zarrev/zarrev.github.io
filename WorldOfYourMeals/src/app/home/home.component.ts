@@ -9,9 +9,21 @@ import {AuthorizationService} from '../authorization.service';
 export class HomeComponent implements OnInit {
   @Input() title: string;
 
-  constructor(public authorizationService: AuthorizationService) {
+  constructor(private authorizationService: AuthorizationService) {
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
+  get loggedIn() {
+    return this.authorizationService.isLoggedIn;
+  }
+
+  public logOut(): void {
+    this.authorizationService.signOut(this.authorizationService.getUser, this.authorizationService.isLoggedIn);
+  }
+
+  public logIn(): void {
+    this.authorizationService.signIn();
+  }
 }

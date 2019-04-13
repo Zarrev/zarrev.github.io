@@ -11,7 +11,7 @@ export class NavbarComponent implements OnInit {
 
   @Input() title: string;
 
-  constructor(public scrollerService: ScrollerService, public authorizationService: AuthorizationService) {
+  constructor(private scrollerService: ScrollerService, private authorizationService: AuthorizationService) {
   }
 
   ngOnInit() {
@@ -19,19 +19,17 @@ export class NavbarComponent implements OnInit {
       this.authorizationService.setUser = user;
       this.authorizationService.setLoggedIn = user != null;
     });
-    // this.togglerCollaps();
   }
 
-  // a sötétmágia minden erejével ellenem van, így ez a funkció nem működik
-  // private togglerCollaps(): void {
-  //   const toggler = $('.navbar-toggler.btn-sm');
-  //   console.log(toggler);
-  //   $('.nav-link').on('click', () => {
-  //     if ($(this).css('display') !== 'none') {
-  //       toggler.get(0).click(); // trigger( 'click' );
-  //       console.log('triggered');
-  //     }
-  //     console.log('tried');
-  //   });
-  // }
+  get loggedIn() {
+    return this.authorizationService.isLoggedIn;
+  }
+
+  public logIn(): void {
+    this.authorizationService.signIn();
+  }
+
+  public scrollToAbout(): void {
+    this.scrollerService.scrollFunc('about');
+  }
 }

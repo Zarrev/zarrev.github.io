@@ -15,11 +15,11 @@
     </div>
   </div>
   <div class="row justify-content-center top-buffer">
-    <div *ngIf="authorizationService.isLoggedIn; else login">
-      <button (click)="authorizationService.signOut()" type="button" class="btn btn-outline-primary rounded">Logout</button>
+    <div *ngIf="loggedIn; else login">
+      <button (click)="logOut()" type="button" class="btn btn-outline-primary rounded">Logout</button>
     </div>
     <ng-template #login>
-      <button (click)="authorizationService.signIn()" type="button" class="btn btn-outline-primary rounded">Facebook LogIn</button>
+      <button (click)="logIn()" type="button" class="btn btn-outline-primary rounded">Facebook LogIn</button>
     </ng-template>
   </div>
 </div>
