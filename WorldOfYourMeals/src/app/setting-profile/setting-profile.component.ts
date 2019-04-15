@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {Settings} from '../settings-of-user';
 import {AuthorizationService} from '../authorization.service';
@@ -11,17 +11,27 @@ import {AuthorizationService} from '../authorization.service';
 })
 export class SettingProfileComponent implements OnInit {
 
-  private settings: Settings;
   private messageForm: FormGroup;
   private submitted = false;
   private success = false;
 
   constructor(private formBuilder: FormBuilder, private router: Router, private authorizationService: AuthorizationService) {
-    this.settings = this.authorizationService.getSettings;
     this.messageForm = this.formBuilder.group({
-      notifyCheck: ['', null],
-      notifyNumber: ['', [Validators.min(1), Validators.pattern('^[0-9]*$')]],
-      gps: ['', null]
+      notifyCheck: [this.getSettings.notifyCheck, null],
+      notifyNumber: [this.getSettings.notifyNumber, [Validators.min(1), Validators.max(24),
+           Validators.pattern('^[0-9]*$'), Validators.required]],
+      gps: [this.getSettings.gps, null]
+    });
+    this.messageForm.controls.notifyCheck.valueChanges.subscribe((mode: boolean) => {
+      if (!mode) {
+        // this.messageForm.controls.notifyNumber.clearValidators();
+        this.messageForm.controls.notifyNumber.disable();
+      } else {
+        // this.messageForm.controls.notifyNumber.setValidators([Validators.min(1), Validators.max(24),
+        //   Validators.pattern('^[0-9]*$'), Validators.required]);
+        this.messageForm.controls.notifyNumber.enable();
+      }
+      this.messageForm.controls.notifyNumber.updateValueAndValidity();
     });
   }
 
@@ -29,8 +39,6 @@ export class SettingProfileComponent implements OnInit {
     this.submitted = true;
 
     if (this.messageForm.invalid) {
-      console.log(this.messageForm.controls.name.errors.required);
-      console.log(this.messageForm.controls.message.errors.required);
       return;
     }
 
@@ -43,6 +51,6 @@ export class SettingProfileComponent implements OnInit {
   }
 
   get getSettings(): Settings {
-    return this.settings;
+    return this.authorizationService.getSettings;
   }
 }

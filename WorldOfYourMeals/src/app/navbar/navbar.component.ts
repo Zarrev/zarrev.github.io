@@ -32,4 +32,8 @@ export class NavbarComponent implements OnInit {
   public scrollToAbout(): void {
     this.scrollerService.scrollFunc('about');
   }
+
+  public logOut(): void {
+    this.authorizationService.signOut(this.authorizationService.getUser, this.authorizationService.isLoggedIn);
+  }
 }

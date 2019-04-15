@@ -7,22 +7,28 @@
           <div class="form-row">
             <div class="col-md-4 mb-3">
               <div class="form-group">
-                <label for="notiFreq">Notify frequency (h)</label>
-                <input id="notiFreq" type="number" formControlName="notifyNumber" class="form-control"
-                       [ngClass]="{ 'is-invalid': submitted && messageForm.controls.notifyNumber.errors }" [(ngModel)]="getSettings.notiFreq">
-                <div *ngIf="submitted && messageForm.controls.notifyNumber.errors != null" class="invalid-feedback">
-                  <div *ngIf="messageForm.controls.notifyNumber.errors.min">The number must be greater than zero.</div>
-                  <div *ngIf="messageForm.controls.notifyNumber.errors.pattern">The field must contains only
-                    numbers.
-                  </div>
+                <div class="form-check">
+                  <input id="notiOn" type="checkbox" formControlName="notifyCheck" class="form-check-input">
+                  <label for="notiOn" class="form-check-label">Notifications</label>
                 </div>
               </div>
             </div>
-            <div class="col-md-4 mb-3">
+            <div *ngIf="messageForm.controls.notifyCheck.value" class="col-md-4 mb-3 table-dark">
               <div class="form-group">
-                <div class="form-check">
-                  <input id="notiOn" type="checkbox" formControlName="notifyCheck" class="form-check-input" [(ngModel)]="getSettings.noti">
-                  <label for="notiOn" class="form-check-label">Notifications</label>
+                <label for="notiFreq">Notify frequency (h)</label>
+                <input id="notiFreq" type="number" formControlName="notifyNumber" class="form-control"
+                       [ngClass]="{ 'is-invalid': submitted && messageForm.controls.notifyNumber.errors }">
+                <div *ngIf="submitted && messageForm.controls.notifyNumber.errors != null" class="invalid-feedback">
+                  <div *ngIf="messageForm.controls.notifyNumber.errors.min
+                  || messageForm.controls.notifyNumber.errors.max">
+                    The number must be in the following range: [0;24].
+                  </div>
+                  <div *ngIf="messageForm.controls.notifyNumber.errors.pattern">The field must contains only
+                    numbers.
+                  </div>
+                  <div *ngIf="messageForm.controls.notifyNumber.errors.required">The field must contains
+                    something.
+                  </div>
                 </div>
               </div>
             </div>
@@ -31,7 +37,7 @@
             <div class="col-md-4 mb-3">
               <div class="form-group">
                 <div class="form-check">
-                  <input id="gps" type="checkbox" formControlName="gps" class="form-check-input" [(ngModel)]="getSettings.gps">
+                  <input id="gps" type="checkbox" formControlName="gps" class="form-check-input">
                   <label for="gps" class="form-check-label">GPS</label>
                 </div>
               </div>

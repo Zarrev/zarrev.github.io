@@ -1,17 +1,17 @@
 export class Settings {
   public gps: boolean;
-  public noti: boolean;
-  public notiFreq: number;
+  public notifyCheck: boolean;
+  public notifyNumber: number;
 
   constructor(gps: boolean, noti: boolean, notiFreq: number) {
     this.gps = gps;
-    this.noti = noti;
-    this.notiFreq = notiFreq;
+    this.notifyCheck = noti;
+    this.notifyNumber = notiFreq;
   }
 
   set madeFromMap(value: Map<any, any>) {
     this.gps = value['gps'];
-    this.noti = value['noti'];
-    this.notiFreq = value['notiFreq'];
+    this.notifyCheck = value['notifyCheck'];
+    this.notifyNumber = value['notifyNumber'];
   }
 }

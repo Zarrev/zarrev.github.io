@@ -12,13 +12,14 @@ export class AuthorizationService {
   private user: SocialUser;
   private loggedIn: boolean;
   private coverUrl = '/assets/img/twotone-photo_size_select_actual-24px.svg';
-  private settings = new Settings(true, true, 2);
+  private settings: Settings;
 
   constructor(private authService: AuthService, private compiler: Compiler) {
     this.subscription = this.authorizationState.subscribe(user => {
       this.user = user;
       this.loggedIn = user != null;
     });
+    this.settings = new Settings(true, true, 2);
   }
 
   signIn(): void {
