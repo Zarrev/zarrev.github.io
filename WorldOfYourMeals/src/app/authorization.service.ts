@@ -1,6 +1,7 @@
 import {Compiler, Injectable} from '@angular/core';
 import {AuthService, FacebookLoginProvider, SocialUser} from 'angularx-social-login';
 import {Observable, Subscription} from 'rxjs';
+import {Settings} from './settings-of-user';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,7 @@ export class AuthorizationService {
   private user: SocialUser;
   private loggedIn: boolean;
   private coverUrl = '/assets/img/twotone-photo_size_select_actual-24px.svg';
+  private settings = new Settings(true, true, 2);
 
   constructor(private authService: AuthService, private compiler: Compiler) {
     this.subscription = this.authorizationState.subscribe(user => {
@@ -36,6 +38,22 @@ export class AuthorizationService {
     });
     this.subscription.unsubscribe();
     this.compiler.clearCache();
+  }
+
+  get getSettings(): Settings {
+    return this.settings;
+  }
+
+  get getSettingsAsString(): string {
+    return JSON.stringify(this.settings);
+  }
+
+  set setSettings(value: Settings) {
+    this.setSettings = value;
+  }
+
+  set setSettingsFromMap(value: Map<any, any>) {
+    this.settings.madeFromMap = value;
   }
 
   get authorizationState(): Observable<SocialUser> {

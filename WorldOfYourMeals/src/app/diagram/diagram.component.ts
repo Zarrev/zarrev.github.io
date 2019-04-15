@@ -4,7 +4,6 @@ import * as CanvasJS from 'src/assets/scripts/canvasjs/canvasjs.min.js';
 @Component({
   selector: 'app-diagram',
   templateUrl: './diagram.component.html',
-  // styleUrls: ['./diagram.component.scss']
 })
 export class DiagramComponent implements OnInit {
 
@@ -32,7 +31,6 @@ export class DiagramComponent implements OnInit {
         ]
       }]
     });
-    // chart.renderRangeBar(5);
     chart.render();
   }
 

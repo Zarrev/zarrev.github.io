@@ -1,29 +1,49 @@
-<h2 class="">Settings</h2>
+<div class="jumbotron">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <h3>Settings</h3>
+        <form [formGroup]="messageForm" (ngSubmit)="onSubmit()">
+          <div class="form-row">
+            <div class="col-md-4 mb-3">
+              <div class="form-group">
+                <label for="notiFreq">Notify frequency (h)</label>
+                <input id="notiFreq" type="number" formControlName="notifyNumber" class="form-control"
+                       [ngClass]="{ 'is-invalid': submitted && messageForm.controls.notifyNumber.errors }" [(ngModel)]="getSettings.notiFreq">
+                <div *ngIf="submitted && messageForm.controls.notifyNumber.errors != null" class="invalid-feedback">
+                  <div *ngIf="messageForm.controls.notifyNumber.errors.min">The number must be greater than zero.</div>
+                  <div *ngIf="messageForm.controls.notifyNumber.errors.pattern">The field must contains only
+                    numbers.
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <div class="form-group">
+                <div class="form-check">
+                  <input id="notiOn" type="checkbox" formControlName="notifyCheck" class="form-check-input" [(ngModel)]="getSettings.noti">
+                  <label for="notiOn" class="form-check-label">Notifications</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-md-4 mb-3">
+              <div class="form-group">
+                <div class="form-check">
+                  <input id="gps" type="checkbox" formControlName="gps" class="form-check-input" [(ngModel)]="getSettings.gps">
+                  <label for="gps" class="form-check-label">GPS</label>
+                </div>
+              </div>
+            </div>
+          </div>
 
-<form [formGroup]="messageForm" (ngSubmit)="onSubmit()">
-  <h5 *ngIf="success">Your form is valid!</h5>
-  <label>
-    Name:
-    <input type="text" formControlName="name">
-    <div *ngIf="submitted && messageForm.controls.name.errors" class="invalid-feedback">
-      <div *ngIf="messageForm.controls.name.errors.required">Your name is required.</div>
+          <button class="btn btn-dark rounded-circle p-2" type="submit">
+            <img style="filter: invert(100%);" src="/assets/img/baseline-save-24px.svg"
+                 width="30" height="30" alt="">
+          </button>
+        </form>
+      </div>
     </div>
-  </label>
-
-  <label>
-    Message:
-    <input type="text" formControlName="message">
-    <div *ngIf="submitted && messageForm.controls.message.errors" class="invalid-feedback">
-      <div *ngIf="messageForm.controls.message.errors.required">A message is required.</div>
-    </div>
-  </label>
-
-  <button class="btn btn-primary" type="submit" value="Send message">Submit form</button>
-</form>
-
-<div *ngIf="submitted" class="alert-success">
-  <strong>Name:</strong>
-  <span>{{messageForm.controls.name.value}}</span>
-  <strong>Message:</strong>
-  <span>{{messageForm.controls.message.value}}</span>
+  </div>
 </div>

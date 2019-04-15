@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {ActivatedRouteSnapshot, RouterModule, Routes} from '@angular/router';
+import {RouterModule, Routes} from '@angular/router';
 import {HomeComponent} from './home/home.component';
 import {ProfileComponent} from './profile/profile.component';
 import {SettingProfileComponent} from './setting-profile/setting-profile.component';
