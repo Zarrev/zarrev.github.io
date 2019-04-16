@@ -1,3 +1,51 @@
-<p>
-  edit-profile works!
-</p>
+<div class="jumbotron">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <h3>Edits</h3>
+        <form [formGroup]="messageForm" (ngSubmit)="onSubmit()">
+          <div class="form-row">
+            <div class="col-md-4 mb-3">
+              <img class="profil--pic" [src]="url">
+            </div>
+            <div class="col-md-4 mb-3">
+              <div class="form-group">
+                  <label for="profilpic" class="form-check-label">Profile Pic</label>
+                  <input id="profilpic" formControlName="profilpic" type='file' (change)="readUrl($event)">
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-md-4 mb-3">
+              <img class="profil--pic" [src]="coverUrl">
+            </div>
+            <div class="col-md-4 mb-3">
+              <div class="form-group">
+                  <label for="profilecover" class="form-check-label">Cover</label>
+                  <input id="profilecover" formControlName="profilecover" type='file' (change)="readCoverUrl($event)">
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-md-4 mb-3">
+              <div class="form-group">
+                <label for="nickname">Nickname</label>
+                <input id="nickname" type="text" formControlName="nickname" class="form-control"
+                       [ngClass]="{ 'is-invalid': submitted && messageForm.controls.nickname.errors }">
+                <div *ngIf="submitted && messageForm.controls.nickname.errors != null" class="invalid-feedback">
+                  <div *ngIf="messageForm.controls.nickname.errors.required">
+                    You have to give a nickname.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="btn btn-dark rounded-circle p-2" type="submit">
+            <img style="filter: invert(100%);" src="/assets/img/baseline-save-24px.svg"
+                 width="30" height="30" alt="">
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

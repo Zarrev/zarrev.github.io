@@ -17,6 +17,8 @@ import { DiagramComponent } from './diagram/diagram.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { SettingProfileComponent } from './setting-profile/setting-profile.component';
 import { ReactiveFormsModule} from '@angular/forms';
+import { HistoryComponent } from './history/history.component';
+import {AgmCoreModule} from '@agm/core';
 
 export function provideConfig() {
   const config = new AuthServiceConfig([
@@ -38,13 +40,17 @@ export function provideConfig() {
     ScrollerComponent,
     DiagramComponent,
     EditProfileComponent,
-    SettingProfileComponent
+    SettingProfileComponent,
+    HistoryComponent
   ],
   imports: [
     BrowserModule,
     SocialLoginModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAE0GXSFwOBJJiiXe0gZNHa6xo1_Lf58pY'
+    })
     // BrowserAnimationsModule
   ],
   providers: [

@@ -7,6 +7,7 @@ import {EditProfileComponent} from './edit-profile/edit-profile.component';
 import {CanActivatePage} from './can-activate-page';
 import {AuthorizationService} from './authorization.service';
 import {DiagramComponent} from './diagram/diagram.component';
+import {HistoryComponent} from './history/history.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -17,7 +18,8 @@ const routes: Routes = [
       {path: 'edit', component: EditProfileComponent},
       {path: 'settings', component: SettingProfileComponent}
     ]
-  }
+  },
+  {path: 'history', component: HistoryComponent, canActivate: [CanActivatePage]}
 ];
 
 @NgModule({

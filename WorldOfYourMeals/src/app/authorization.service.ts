@@ -13,11 +13,15 @@ export class AuthorizationService {
   private loggedIn: boolean;
   private coverUrl = '/assets/img/twotone-photo_size_select_actual-24px.svg';
   private settings: Settings;
+  private userPhoto: string;
+  private nickname: string;
 
   constructor(private authService: AuthService, private compiler: Compiler) {
     this.subscription = this.authorizationState.subscribe(user => {
       this.user = user;
       this.loggedIn = user != null;
+      this.userPhoto = this.loggedIn ? user.photoUrl : null;
+      this.nickname = this.loggedIn ? user.name : 'defualt_nickname';
     });
     this.settings = new Settings(true, true, 2);
   }
@@ -27,6 +31,8 @@ export class AuthorizationService {
         this.subscription = this.authorizationState.subscribe(user => {
           this.user = user;
           this.loggedIn = user != null;
+          this.userPhoto = this.loggedIn ? user.photoUrl : null;
+          this.nickname = this.loggedIn ? user.name : 'defualt_nickname';
         });
       }
     );
@@ -36,9 +42,31 @@ export class AuthorizationService {
     this.authService.signOut().finally(() => {
       this.user = null;
       this.loggedIn = false;
+      this.userPhoto = null;
+      this.nickname = 'defualt_nickname';
     });
     this.subscription.unsubscribe();
     this.compiler.clearCache();
+  }
+
+  get getNickname() {
+    return this.nickname;
+  }
+
+  set setNickname(value: string) {
+    this.nickname = value;
+  }
+
+  get photourl() {
+    return this.userPhoto != null ? this.userPhoto : this.user.photoUrl;
+  }
+
+  set photourl(value: string) {
+    this.photourl = value;
+  }
+
+  set setCoverUrl(value: string) {
+    this.coverUrl = value;
   }
 
   get getSettings(): Settings {

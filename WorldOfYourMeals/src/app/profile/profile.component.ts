@@ -28,4 +28,12 @@ export class ProfileComponent implements OnInit {
   get cover() {
     return this.authorizationService.getCover();
   }
+
+  get userProfilPic() {
+    return this.authorizationService.photourl;
+  }
+
+  get userNickname() {
+    return this.authorizationService.getNickname;
+  }
 }

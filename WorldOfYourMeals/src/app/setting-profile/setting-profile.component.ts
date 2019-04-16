@@ -1,3 +1,4 @@
+/* tslint:disable:variable-name */
 import {Component, Input, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
@@ -11,39 +12,36 @@ import {AuthorizationService} from '../authorization.service';
 })
 export class SettingProfileComponent implements OnInit {
 
-  private messageForm: FormGroup;
-  private submitted = false;
-  private success = false;
+  private _messageForm: FormGroup;
+  private _submitted = false;
+  private _success = false;
 
   constructor(private formBuilder: FormBuilder, private router: Router, private authorizationService: AuthorizationService) {
-    this.messageForm = this.formBuilder.group({
+    this._messageForm = this.formBuilder.group({
       notifyCheck: [this.getSettings.notifyCheck, null],
       notifyNumber: [this.getSettings.notifyNumber, [Validators.min(1), Validators.max(24),
            Validators.pattern('^[0-9]*$'), Validators.required]],
       gps: [this.getSettings.gps, null]
     });
-    this.messageForm.controls.notifyCheck.valueChanges.subscribe((mode: boolean) => {
+    this._messageForm.controls.notifyCheck.valueChanges.subscribe((mode: boolean) => {
       if (!mode) {
-        // this.messageForm.controls.notifyNumber.clearValidators();
-        this.messageForm.controls.notifyNumber.disable();
+        this._messageForm.controls.notifyNumber.disable();
       } else {
-        // this.messageForm.controls.notifyNumber.setValidators([Validators.min(1), Validators.max(24),
-        //   Validators.pattern('^[0-9]*$'), Validators.required]);
-        this.messageForm.controls.notifyNumber.enable();
+        this._messageForm.controls.notifyNumber.enable();
       }
-      this.messageForm.controls.notifyNumber.updateValueAndValidity();
+      this._messageForm.controls.notifyNumber.updateValueAndValidity();
     });
   }
 
   onSubmit() {
-    this.submitted = true;
+    this._submitted = true;
 
-    if (this.messageForm.invalid) {
+    if (this._messageForm.invalid) {
       return;
     }
 
-    this.success = true;
-    this.authorizationService.setSettingsFromMap = this.messageForm.value;
+    this._success = true;
+    this.authorizationService.setSettingsFromMap = this._messageForm.value;
     this.router.navigateByUrl('/profile');
   }
 
@@ -52,5 +50,30 @@ export class SettingProfileComponent implements OnInit {
 
   get getSettings(): Settings {
     return this.authorizationService.getSettings;
+  }
+
+
+  get messageForm(): FormGroup {
+    return this._messageForm;
+  }
+
+  set messageForm(value: FormGroup) {
+    this._messageForm = value;
+  }
+
+  get submitted(): boolean {
+    return this._submitted;
+  }
+
+  set submitted(value: boolean) {
+    this._submitted = value;
+  }
+
+  get success(): boolean {
+    return this._success;
+  }
+
+  set success(value: boolean) {
+    this._success = value;
   }
 }
