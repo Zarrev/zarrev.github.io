@@ -1,6 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ScrollerService} from '../scroller.service';
 import {AuthorizationService} from '../authorization.service';
+import {element} from 'protractor';
+import {expand} from 'rxjs/operators';
 
 @Component({
   selector: 'app-navbar',
@@ -11,6 +13,15 @@ export class NavbarComponent implements OnInit {
 
   @Input() title: string;
 
+  private expand(): void {
+    Array.prototype.forEach.call(document.getElementsByClassName('nav-link'), (elem) => {
+      elem.addEventListener('click', () => {
+        document.getElementById('toggler').click();
+      });
+    });
+    document.getElementById('toggler').removeEventListener('click', this.expand);
+  }
+
   constructor(private scrollerService: ScrollerService, private authorizationService: AuthorizationService) {
   }
 
@@ -18,6 +29,13 @@ export class NavbarComponent implements OnInit {
     this.authorizationService.authorizationState.subscribe(user => {
       this.authorizationService.setUser = user;
       this.authorizationService.setLoggedIn = user != null;
+    });
+    this.expander();
+  }
+
+  private expander() {
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('toggler').addEventListener('click', this.expand);
     });
   }
 

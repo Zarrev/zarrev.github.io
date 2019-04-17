@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import {ModuleWithProviders, NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {HomeComponent} from './home/home.component';
 import {ProfileComponent} from './profile/profile.component';
@@ -8,6 +8,8 @@ import {CanActivatePage} from './can-activate-page';
 import {AuthorizationService} from './authorization.service';
 import {DiagramComponent} from './diagram/diagram.component';
 import {HistoryComponent} from './history/history.component';
+import {ScrollerService} from './scroller.service';
+import {HistoryGalleryComponent} from './history-gallery/history-gallery.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -19,7 +21,8 @@ const routes: Routes = [
       {path: 'settings', component: SettingProfileComponent}
     ]
   },
-  {path: 'history', component: HistoryComponent, canActivate: [CanActivatePage]}
+  {path: 'history', component: HistoryComponent, canActivate: [CanActivatePage]},
+  {path: 'history_gallery', component: HistoryGalleryComponent, canActivate: [CanActivatePage]}
 ];
 
 @NgModule({
@@ -30,4 +33,13 @@ const routes: Routes = [
   providers: [CanActivatePage, AuthorizationService]
 })
 export class AppRoutingModule {
+  static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: AppRoutingModule,
+      providers: [
+        AuthorizationService,
+        ScrollerService
+      ]
+    };
+  }
 }

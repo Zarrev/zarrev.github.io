@@ -1,10 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-// import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-
 import { SocialLoginModule, AuthServiceConfig } from 'angularx-social-login';
 import { FacebookLoginProvider } from 'angularx-social-login';
+import {AgmCoreModule} from '@agm/core';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -18,7 +18,8 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { SettingProfileComponent } from './setting-profile/setting-profile.component';
 import { ReactiveFormsModule} from '@angular/forms';
 import { HistoryComponent } from './history/history.component';
-import {AgmCoreModule} from '@agm/core';
+import { HistoryGalleryComponent } from './history-gallery/history-gallery.component';
+
 
 export function provideConfig() {
   const config = new AuthServiceConfig([
@@ -41,17 +42,18 @@ export function provideConfig() {
     DiagramComponent,
     EditProfileComponent,
     SettingProfileComponent,
-    HistoryComponent
+    HistoryComponent,
+    HistoryGalleryComponent
   ],
   imports: [
     BrowserModule,
     SocialLoginModule,
-    AppRoutingModule,
+    AppRoutingModule.forRoot(),
     ReactiveFormsModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyAE0GXSFwOBJJiiXe0gZNHa6xo1_Lf58pY'
-    })
-    // BrowserAnimationsModule
+      apiKey: 'AIzaSyDSUC1tJr4gmXq6JAA-35BQwBedNAHdi68'
+    }),
+    CarouselModule.forRoot()
   ],
   providers: [
     {
