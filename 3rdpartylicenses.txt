@@ -163,6 +163,14 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 ngx-bootstrap/carousel
 
+ngx-bootstrap/component-loader
+
+ngx-bootstrap/modal
+
+ngx-bootstrap/positioning
+
+ngx-bootstrap/rating
+
 ngx-bootstrap/utils
 
 rxjs
