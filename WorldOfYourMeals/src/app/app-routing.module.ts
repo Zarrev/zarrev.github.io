@@ -22,7 +22,7 @@ const routes: Routes = [
     ]
   },
   {path: 'history', component: HistoryComponent, canActivate: [CanActivatePage]},
-  {path: 'history_gallery', component: HistoryGalleryComponent, canActivate: [CanActivatePage]}
+  {path: 'history_gallery/:id', component: HistoryGalleryComponent, canActivate: [CanActivatePage]}
 ];
 
 @NgModule({

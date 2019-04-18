@@ -5,6 +5,8 @@ import { SocialLoginModule, AuthServiceConfig } from 'angularx-social-login';
 import { FacebookLoginProvider } from 'angularx-social-login';
 import {AgmCoreModule} from '@agm/core';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { RatingModule } from 'ngx-bootstrap/rating';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -16,9 +18,10 @@ import { ScrollerComponent } from './scroller/scroller.component';
 import { DiagramComponent } from './diagram/diagram.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { SettingProfileComponent } from './setting-profile/setting-profile.component';
-import { ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HistoryComponent } from './history/history.component';
 import { HistoryGalleryComponent } from './history-gallery/history-gallery.component';
+import { RatingComponent } from './rating/rating.component';
 
 
 export function provideConfig() {
@@ -43,7 +46,8 @@ export function provideConfig() {
     EditProfileComponent,
     SettingProfileComponent,
     HistoryComponent,
-    HistoryGalleryComponent
+    HistoryGalleryComponent,
+    RatingComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +57,10 @@ export function provideConfig() {
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDSUC1tJr4gmXq6JAA-35BQwBedNAHdi68'
     }),
-    CarouselModule.forRoot()
+    CarouselModule.forRoot(),
+    ModalModule.forRoot(),
+    RatingModule.forRoot(),
+    FormsModule
   ],
   providers: [
     {

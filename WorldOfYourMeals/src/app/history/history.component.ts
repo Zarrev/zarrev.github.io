@@ -3,6 +3,8 @@ import {MouseEvent} from '@agm/core';
 
 import * as $ from 'jquery';
 import {Marker} from './marker.interface';
+import {MealService} from '../meal.service';
+import {Meal} from '../history-gallery/meal.interface';
 
 @Component({
   selector: 'app-history',
@@ -10,36 +12,15 @@ import {Marker} from './marker.interface';
   styleUrls: ['./history.component.scss']
 })
 export class HistoryComponent implements OnInit {
-  private _zoom = 8;
+  private _zoom = 13;
   private _lat = 47.4813602;
   private _lng = 18.9902175;
-  private _selectedMarker: Marker;
-  markers: Marker[] = [
-    {
-      lat: 47.49510135219708,
-      lng: 19.05966659740193,
-      label: '1',
-      draggable: false,
-      alpha: 0.1
-    },
-    {
-      lat: 47.5000353100731,
-      lng: 19.06901117782411,
-      label: '2',
-      draggable: false
-    },
-    {
-      lat: 47.50818599715002,
-      lng: 19.056730270385742,
-      label: '3',
-      draggable: false
-    }
-  ];
+  // private _selectedId = 0;
 
-  constructor() { }
+  constructor(private mealService: MealService) { }
 
   ngOnInit(): void {
-    const navbarHeight = 56; // document.getElementById('navbar').clientHeight ;
+    const navbarHeight = 56;
     $('#agm-map').attr('style', 'height: ' +
       (Math.max(document.documentElement.clientHeight, window.innerHeight || 0) - navbarHeight) + 'px;');
     $(window).on('resize', () => {
@@ -49,39 +30,16 @@ export class HistoryComponent implements OnInit {
     });
   }
 
-
-  addMarker(lat: number, lng: number) {
-    this.markers.push({lat, lng, draggable: false});
-  }
-
   max(coordType: 'lat' | 'lng'): number {
-    return Math.max(...this.markers.map(marker => marker[coordType]));
+    return Math.max(...this.mealService.markers.map(marker => marker[coordType]));
   }
 
   min(coordType: 'lat' | 'lng'): number {
-    return Math.min(...this.markers.map(marker => marker[coordType]));
+    return Math.min(...this.mealService.markers.map(marker => marker[coordType]));
   }
-
-  selectMarker(event) {
-    this._selectedMarker = {
-      lat: event.latitude,
-      lng: event.longitude,
-      label: event.label,
-      draggable: event.draggable
-    };
-  }
-
-  markerDragEnd(m: Marker, $event: MouseEvent) {
-    console.log('dragEnd', m, $event);
-  }
-
 
   get zoom(): number {
     return this._zoom;
-  }
-
-  set zoom(value: number) {
-    this._zoom = value;
   }
 
   get lat(): number {
@@ -100,15 +58,16 @@ export class HistoryComponent implements OnInit {
     this._lng = value;
   }
 
-  get selectedMarker(): Marker {
-    return this._selectedMarker;
+  get meals(): Meal[] {
+    return this.mealService.meals;
   }
 
-  set selectedMarker(value: Marker) {
-    this._selectedMarker = value;
-  }
-
-  get selectedMarkerContent(): string {
-    return this._selectedMarker.lat + ' ' + this._selectedMarker.lng;
-  }
+  // get selectedId(): number {
+  //   return this._selectedId;
+  // }
+  //
+  // public jump(value: number) {
+  //   this._selectedId = value;
+  //   document.getElementById('switch').click();
+  // }
 }

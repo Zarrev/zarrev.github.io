@@ -34,7 +34,12 @@
 .fixed-right-bottom {
   position: fixed;
   bottom: -2%;
-  right: -2%;
+  left: 92%;
   z-index: 1020;
   transform: translate(-50%, -50%);
+}
+
+.star-format {
+  font-size: xx-large;
+  text-align: center;
 }

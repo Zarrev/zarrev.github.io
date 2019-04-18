@@ -1,16 +1,18 @@
 <div class="agm-map" #map>
-  <agm-map id="agm-map" [style.height.px]="map.offsetHeight" [latitude]="lat" [longitude]="lng" [zoom]="zoom"
-           (mapClick)="addMarker($event.coords.lat, $event.coords.lng)">
-    <agm-marker *ngFor="let marker of markers" [latitude]="marker.lat" [longitude]="marker.lng"
-                [opacity]="marker.alpha" [label]="marker.label" (dragEnd)="markerDragEnd(marker, $event)"
-                [markerDraggable]="marker.draggable" (markerClick)="selectMarker($event)">
+  <agm-map id="agm-map" [style.height.px]="map.offsetHeight" [latitude]="lat" [longitude]="lng" [zoom]="zoom">
+    <agm-marker *ngFor="let meal of meals" [latitude]="meal.where.lat" [longitude]="meal.where.lng"
+                [opacity]="meal.where.alpha" [label]="meal.where.label" [markerDraggable]="meal.where.draggable">
       <agm-info-window>
-        <strong>{{marker.lat + ' : ' + marker.lng + ' : ' + marker.label}}</strong>
+        <strong>{{meal.name}}</strong>
+        <app-rating [rate]="meal.rate"></app-rating>
+        <p>Registered on {{meal.date.toDateString()}}</p>
+        <em>{{meal.where.lat + ' : ' + meal.where.lng + ' : ' + meal.where.label}}</em> <br>
+        <button type="button" class="btn btn-primary" [routerLink]="['/history_gallery', meal.id]">Jump to the details</button>
       </agm-info-window>
     </agm-marker>
   </agm-map>
   <div class="fix-left-bottom">
-    <button type="button" class="btn btn-dark rounded-circle p-2" routerLink="/history_gallery">
+    <button id="switch" type="button" class="btn btn-dark rounded-circle p-2" [routerLink]="['/history_gallery', 0]">
       <img style="filter: invert(100%);" src="assets/img/switch.svg"
            width="30" height="30" alt="">
     </button>
