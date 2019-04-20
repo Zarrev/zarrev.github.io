@@ -69,7 +69,7 @@ export class MealService {
   }
 
   get fitBound(): Meal {
-    const fitBoundMeals = this.meals.filter(meal => (meal.fitBounds !== undefined) && (meal.fitBounds === true));
+    const fitBoundMeals = this.meals.filter(meal => meal.fitBounds === true);
     return fitBoundMeals.length > 0 ? fitBoundMeals[0] : undefined;
   }
 

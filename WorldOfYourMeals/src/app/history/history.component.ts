@@ -1,19 +1,20 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 
 import * as $ from 'jquery';
 import {MealService} from '../meal.service';
 import {Meal} from '../history-gallery/meal.interface';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-history',
   templateUrl: './history.component.html',
   styleUrls: ['./history.component.scss']
 })
-export class HistoryComponent implements OnInit {
+export class HistoryComponent implements OnInit, OnDestroy {
   private _fitBound = true;
+  private jumped?: Meal;
 
-  constructor(private mealService: MealService, private activatedRoute: ActivatedRoute) {}
+  constructor(private mealService: MealService,  private router: Router) {}
 
   ngOnInit(): void {
     const navbarHeight = 56;
@@ -24,6 +25,10 @@ export class HistoryComponent implements OnInit {
       const style = 'height: ' + h + 'px;';
       $('#agm-map').attr('style', style);
     });
+  }
+
+  ngOnDestroy(): void {
+    this.mealService.setMealFitBound(false, this.jumped);
   }
 
   max(coordType: 'lat' | 'lng'): number {
@@ -41,7 +46,10 @@ export class HistoryComponent implements OnInit {
 
   fitBound(meal: Meal): boolean {
     if (this.mealService.fitBound) {
-     return meal.fitBounds;
+      if (meal.fitBounds === true) {
+          this.jumped = meal;
+      }
+      return meal.fitBounds;
     }
     return this._fitBound;
   }
