@@ -22,6 +22,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HistoryComponent } from './history/history.component';
 import { HistoryGalleryComponent } from './history-gallery/history-gallery.component';
 import { RatingComponent } from './rating/rating.component';
+import { AgmJsMarkerClustererModule } from '@agm/js-marker-clusterer';
 
 
 export function provideConfig() {
@@ -60,7 +61,8 @@ export function provideConfig() {
     CarouselModule.forRoot(),
     ModalModule.forRoot(),
     RatingModule.forRoot(),
-    FormsModule
+    FormsModule,
+    AgmJsMarkerClustererModule
   ],
   providers: [
     {

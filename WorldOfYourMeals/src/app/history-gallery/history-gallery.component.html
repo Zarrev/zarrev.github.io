@@ -34,39 +34,8 @@
       <app-rating [rate]="selectedMeal.rate"></app-rating>
       <p>{{selectedMeal.date.toDateString()}}</p>
       <p>Latitude: <br> {{selectedMeal.where.lat}}</p>
-      <p>Longitude: <br> {{selectedMeal.where.lng}}</p>
+      <p>Longitude: <br> {{selectedMeal.where.lng}}</p> <br>
+      <button (click)="jump()">Jump to the marker</button>
     </div>
   </div>
 </ng-template>
-
-<!--<div id="carouselControls" class="carousel slide" data-ride="carousel">-->
-<!--  <div class="carousel-inner">-->
-<!--    <div class="carousel-item" *ngFor="let meal of meals" [ngClass]="setActive(meal)">-->
-<!--      <img [id]="meal.id" [src]="meal.src" [alt]="meal.name" class="img-style myThing" (click)="openModal(template, meal)" [style]="style">-->
-<!--      <div class="carousel-caption">-->
-<!--        <h3 class="opp">{{meal.name}}</h3>-->
-<!--        <app-rating class="opp" [rate]="meal.rate"></app-rating>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--  <a class="carousel-control-prev" href="#carouselControls" (click)="routChange()" role="button" data-slide="prev">-->
-<!--    <span class="carousel-control-prev-icon" aria-hidden="true"></span>-->
-<!--    <span class="sr-only">Previous</span>-->
-<!--  </a>-->
-<!--  <a class="carousel-control-next" href="#carouselControls" role="button" data-slide="next">-->
-<!--    <span class="carousel-control-next-icon" aria-hidden="true"></span>-->
-<!--    <span class="sr-only">Next</span>-->
-<!--  </a>-->
-<!--</div>-->
-<!--<div class="fixed-left-bottom">-->
-<!--  <button type="button" class="btn btn-dark rounded-circle p-2" routerLink="/history">-->
-<!--    <img style="filter: invert(100%);" src="assets/img/switch.svg"-->
-<!--         width="30" height="30" alt="">-->
-<!--  </button>-->
-<!--</div>-->
-<!--<div class="fixed-right-bottom">-->
-<!--  <button type="button" class="btn btn-dark rounded-circle p-2" routerLink="">-->
-<!--    <img style="filter: invert(100%);" src="/assets/img/add_food.svg"-->
-<!--         width="30" height="30" alt="">-->
-<!--  </button>-->
-<!--</div>-->

@@ -1,10 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {MouseEvent} from '@agm/core';
 
 import * as $ from 'jquery';
-import {Marker} from './marker.interface';
 import {MealService} from '../meal.service';
 import {Meal} from '../history-gallery/meal.interface';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-history',
@@ -12,12 +11,9 @@ import {Meal} from '../history-gallery/meal.interface';
   styleUrls: ['./history.component.scss']
 })
 export class HistoryComponent implements OnInit {
-  private _zoom = 13;
-  private _lat = 47.4813602;
-  private _lng = 18.9902175;
-  // private _selectedId = 0;
+  private _fitBound = true;
 
-  constructor(private mealService: MealService) { }
+  constructor(private mealService: MealService, private activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
     const navbarHeight = 56;
@@ -38,36 +34,15 @@ export class HistoryComponent implements OnInit {
     return Math.min(...this.mealService.markers.map(marker => marker[coordType]));
   }
 
-  get zoom(): number {
-    return this._zoom;
-  }
-
-  get lat(): number {
-    return this._lat;
-  }
-
-  set lat(value: number) {
-    this._lat = value;
-  }
-
-  get lng(): number {
-    return this._lng;
-  }
-
-  set lng(value: number) {
-    this._lng = value;
-  }
-
   get meals(): Meal[] {
     return this.mealService.meals;
   }
 
-  // get selectedId(): number {
-  //   return this._selectedId;
-  // }
-  //
-  // public jump(value: number) {
-  //   this._selectedId = value;
-  //   document.getElementById('switch').click();
-  // }
+
+  fitBound(meal: Meal): boolean {
+    if (this.mealService.fitBound) {
+     return meal.fitBounds;
+    }
+    return this._fitBound;
+  }
 }

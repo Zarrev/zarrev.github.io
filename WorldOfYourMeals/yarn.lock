@@ -7,6 +7,11 @@
   resolved "https://registry.yarnpkg.com/@agm/core/-/core-1.0.0-beta.5.tgz#6dbceb666b2dbc4a868b97e1340a3faceb5f2113"
   integrity sha512-LVENJqtBZEWpX+uJkGI0zgg+Xkm2KkktQm4ojZozArbeNvQkVL6pqVc04Mme6vvOzwJpD1cET5w4byC8Xaq1QQ==
 
+"@agm/js-marker-clusterer@^1.0.0-beta.5":
+  version "1.0.0-beta.5"
+  resolved "https://registry.yarnpkg.com/@agm/js-marker-clusterer/-/js-marker-clusterer-1.0.0-beta.5.tgz#05dd4f48e75f5c491c392c86087cc3caa1d6809f"
+  integrity sha512-KqaAc6hgNWKr8TnmW8dZGQXrWh+OVLMhIa6WHsOTN8v9akRsXUPExI6WTbf/vctfVBPf2euEeyTVUfLq/U1T5A==
+
 "@angular-devkit/architect@0.13.8":
   version "0.13.8"
   resolved "https://registry.yarnpkg.com/@angular-devkit/architect/-/architect-0.13.8.tgz#c3b7469e15e2710d48b6fe4e54efea26b557bf14"
@@ -3651,6 +3656,11 @@ js-base64@^2.1.8:
   version "2.5.1"
   resolved "https://registry.yarnpkg.com/js-base64/-/js-base64-2.5.1.tgz#1efa39ef2c5f7980bb1784ade4a8af2de3291121"
   integrity sha512-M7kLczedRMYX4L8Mdh4MzyAMM9O5osx+4FcOQuTvr3A9F2D9S5JXheN0ewNbrvK2UatkTRhL5ejGmGSjNMiZuw==
+
+js-marker-clusterer@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/js-marker-clusterer/-/js-marker-clusterer-1.0.0.tgz#c94be85ae8896819e51c131f891dd2b55558dd17"
+  integrity sha1-yUvoWuiJaBnlHBMfiR3StVVY3Rc=
 
 "js-tokens@^3.0.0 || ^4.0.0", js-tokens@^4.0.0:
   version "4.0.0"

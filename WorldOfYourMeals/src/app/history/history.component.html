@@ -1,6 +1,7 @@
 <div class="agm-map" #map>
-  <agm-map id="agm-map" [style.height.px]="map.offsetHeight" [latitude]="lat" [longitude]="lng" [zoom]="zoom">
-    <agm-marker *ngFor="let meal of meals" [latitude]="meal.where.lat" [longitude]="meal.where.lng"
+  <agm-map id="agm-map" [style.height.px]="map.offsetHeight" [fitBounds]="true">
+    <agm-marker-cluster  imagePath="assets/img/m/m">
+    <agm-marker *ngFor="let meal of meals" [latitude]="meal.where.lat" [longitude]="meal.where.lng" [agmFitBounds]="fitBound(meal)"
                 [opacity]="meal.where.alpha" [label]="meal.where.label" [markerDraggable]="meal.where.draggable">
       <agm-info-window>
         <strong>{{meal.name}}</strong>
@@ -10,6 +11,7 @@
         <button type="button" class="btn btn-primary" [routerLink]="['/history_gallery', meal.id]">Jump to the details</button>
       </agm-info-window>
     </agm-marker>
+    </agm-marker-cluster>
   </agm-map>
   <div class="fix-left-bottom">
     <button id="switch" type="button" class="btn btn-dark rounded-circle p-2" [routerLink]="['/history_gallery', 0]">

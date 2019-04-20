@@ -67,4 +67,16 @@ export class MealService {
     }
     return markers;
   }
+
+  get fitBound(): Meal {
+    const fitBoundMeals = this.meals.filter(meal => (meal.fitBounds !== undefined) && (meal.fitBounds === true));
+    return fitBoundMeals.length > 0 ? fitBoundMeals[0] : undefined;
+  }
+
+  public setMealFitBound(value: boolean, meal: Meal): void {
+    const index = this.meals.indexOf(meal);
+    if (index > -1) {
+      this._meals[index].fitBounds = value;
+    }
+  }
 }

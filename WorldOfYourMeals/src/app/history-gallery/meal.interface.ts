@@ -5,6 +5,7 @@ export interface Meal {
   src: string;
   name: string;
   rate: number;
-  date?: Date; // TODO: cannot be null
-  where?: Marker; // TODO: cannot be null
+  date: Date;
+  where: Marker;
+  fitBounds?: boolean;
 }

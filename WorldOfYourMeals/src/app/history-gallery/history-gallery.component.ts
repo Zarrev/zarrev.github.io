@@ -66,23 +66,23 @@ export class HistoryGalleryComponent implements OnInit, OnDestroy, AfterViewInit
     $('body').css('background-image', '');
   }
 
-  routChange() {
-    this.router.navigate(['/history_gallery', event]);
-  }
-
   setActive() {
-    // setTimeout(() => {
-      for (let i = 0; i < this.meals.length; i++) {
-        if (this.meals[i].id === Number(this.firstActive)) {
-          this.activeSlideIndex = i;
-          return;
-        }
+    for (let i = 0; i < this.meals.length; i++) {
+      if (this.meals[i].id === Number(this.firstActive)) {
+        this.activeSlideIndex = i;
+        return;
       }
-      this.activeSlideIndex = 0;
-    // }, 1000);
+    }
+    this.activeSlideIndex = 0;
   }
 
   onChange(event: number) {
     this.router.navigate(['/history_gallery', this.mealService.meals[event].id]);
+  }
+
+  jump() {
+    this.mealService.setMealFitBound(true, this.selectedMeal);
+    this.modalRef.hide();
+    this.router.navigate(['/history']);
   }
 }
