@@ -16,7 +16,7 @@
   </div>
   <div class="row justify-content-center top-buffer">
     <div *ngIf="loggedIn; else login">
-      <button (click)="null" type="button" class="btn btn-outline-primary rounded">Register your meal</button>
+      <button routerLink="/meal" type="button" class="btn btn-outline-primary rounded">Register your meal</button>
     </div>
     <ng-template #login>
       <button (click)="logIn()" type="button" class="btn btn-outline-primary rounded">Log in</button>

@@ -23,6 +23,7 @@ import { HistoryComponent } from './history/history.component';
 import { HistoryGalleryComponent } from './history-gallery/history-gallery.component';
 import { RatingComponent } from './rating/rating.component';
 import { AgmJsMarkerClustererModule } from '@agm/js-marker-clusterer';
+import { MealFormComponent } from './meal-form/meal-form.component';
 
 
 export function provideConfig() {
@@ -48,7 +49,8 @@ export function provideConfig() {
     SettingProfileComponent,
     HistoryComponent,
     HistoryGalleryComponent,
-    RatingComponent
+    RatingComponent,
+    MealFormComponent
   ],
   imports: [
     BrowserModule,

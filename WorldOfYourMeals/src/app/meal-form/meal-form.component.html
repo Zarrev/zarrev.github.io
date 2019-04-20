@@ -1,0 +1,55 @@
+<div class="jumbotron">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <h3>Settings</h3>
+        <form [formGroup]="messageForm" (ngSubmit)="onSubmit()">
+          <div class="form-row">
+            <div class="col-md-4 mb-3">
+              <div class="form-group">
+                <div class="form-check">
+                  <input id="notiOn" type="checkbox" formControlName="notifyCheck" class="form-check-input">
+                  <label for="notiOn" class="form-check-label">Notifications</label>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="messageForm.controls.notifyCheck.value" class="col-md-4 mb-3 table-dark">
+              <div class="form-group">
+                <label for="notiFreq">Notify frequency (h)</label>
+                <input id="notiFreq" type="number" formControlName="notifyNumber" class="form-control"
+                       [ngClass]="{ 'is-invalid': submitted && messageForm.controls.notifyNumber.errors }">
+                <div *ngIf="submitted && messageForm.controls.notifyNumber.errors != null" class="invalid-feedback">
+                  <div *ngIf="messageForm.controls.notifyNumber.errors.min
+                  || messageForm.controls.notifyNumber.errors.max">
+                    The number must be in the following range: [0;24].
+                  </div>
+                  <div *ngIf="messageForm.controls.notifyNumber.errors.pattern">The field must contains only
+                    numbers.
+                  </div>
+                  <div *ngIf="messageForm.controls.notifyNumber.errors.required">The field must contains
+                    something.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-md-4 mb-3">
+              <div class="form-group">
+                <div class="form-check">
+                  <input id="gps" type="checkbox" formControlName="gps" class="form-check-input">
+                  <label for="gps" class="form-check-label">GPS</label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button class="btn btn-dark rounded-circle p-2" type="submit">
+            <img style="filter: invert(100%);" src="/assets/img/baseline-save-24px.svg"
+                 width="30" height="30" alt="">
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

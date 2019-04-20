@@ -10,6 +10,8 @@ import {DiagramComponent} from './diagram/diagram.component';
 import {HistoryComponent} from './history/history.component';
 import {ScrollerService} from './scroller.service';
 import {HistoryGalleryComponent} from './history-gallery/history-gallery.component';
+import {MealFormComponent} from './meal-form/meal-form.component';
+import {MealService} from './meal.service';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -22,7 +24,9 @@ const routes: Routes = [
     ]
   },
   {path: 'history', component: HistoryComponent, canActivate: [CanActivatePage]},
-  {path: 'history_gallery/:id', component: HistoryGalleryComponent, canActivate: [CanActivatePage]}
+  {path: 'history_gallery/:id', component: HistoryGalleryComponent, canActivate: [CanActivatePage]},
+  {path: 'meal', component: MealFormComponent, canActivate: [CanActivatePage]},
+  {path: '**', redirectTo: 'home'}
 ];
 
 @NgModule({
@@ -38,7 +42,8 @@ export class AppRoutingModule {
       ngModule: AppRoutingModule,
       providers: [
         AuthorizationService,
-        ScrollerService
+        ScrollerService,
+        MealService
       ]
     };
   }
