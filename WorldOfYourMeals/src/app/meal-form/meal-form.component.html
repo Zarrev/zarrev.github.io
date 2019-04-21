@@ -1,5 +1,3 @@
-<!--location date -->
-
 <div class="jumbotron">
   <div class="container-fluid">
     <div class="row">
@@ -10,10 +8,11 @@
             <div class="col-md-4 mb-3">
               <div class="form-group">
                 <label for="nameOfFood">Name</label>
-                <input id="nameOfFood" class="form-control form-control-lg" type="text" placeholder="Eg.: Beef Burger"
+                <input id="nameOfFood" formControlName="nameOfFood" class="form-control form-control-lg" type="text"
+                       placeholder="Eg.: Beef Burger"
                        [ngClass]="{'is-invalid': submitted && messageForm.controls.nameOfFood.errors}">
-                <div *ngIf="submitted && messageForm.controls.nameOfFood.errors != null" class="invalid-feedback">
-                  <div *ngIf="messageForm.controls.notifyNumber.errors.required">
+                <div *ngIf="submitted && messageForm.controls.nameOfFood.errors != null" class="alert alert-danger">
+                  <div *ngIf="messageForm.controls.nameOfFood.errors.required">
                     The name of food is required.
                   </div>
                 </div>
@@ -21,7 +20,11 @@
             </div>
           </div>
           <div class="form-row">
-            <div class="col-md-4 mb-3">
+            <div class="col-sm-4 mb-sm-2">
+              <img class="food--pic img-fluid" [src]="picture ? picture : '/assets/img/food_pic.svg'"
+                   alt="Food picture">
+            </div>
+            <div class="col-sm-4 mb-sm-2">
               <div class="form-group">
                 <label for="pictureUrl">Take a Pic!</label>
                 <input id="pictureUrl" formControlName="pictureUrl" type='file' (change)="readUrl($event)">
@@ -30,20 +33,41 @@
           </div>
           <div class="form-row">
             <div class="col-md-4 mb-3">
-              <img class="profil--pic" [src]="picture" alt="src/assets/img/food_pic.svg">
+              <label for="rate">Rate<br></label>
+                <rating id="rate" style="font-size: xx-large" formControlName="rate" [max]="5" [readonly]="false"
+                        [titles]="['1','2','3','4','5']"></rating>
+              <div *ngIf="submitted && messageForm.controls.rate.errors != null" class="alert alert-danger">
+                <div *ngIf="messageForm.controls.rate.errors.required">
+                  You have to rate your meal.
+                </div>
+                <div *ngIf="messageForm.controls.rate.errors.min || messageForm.controls.rate.errors.max">
+                  You can rate your meals in the following range: [1;5].
+                </div>
+              </div>
             </div>
           </div>
           <div class="form-row">
             <div class="col-md-4 mb-3">
-              <label for="rate">Rate</label>
-              <app-rating [isReadonly]="false" (onHover)="setRate($event)"></app-rating>
-              <input id="rate" formControlName="rate" type="number" [value]="rate" hidden>
+              <label for="location">Where?
+                <button type="button" class="btn-sm" (click)="findMe(template)">Find me</button>
+              </label>
+              <input id="location" formControlName="location" type="text" [value]="getLocation()">
             </div>
           </div>
           <div class="form-row">
             <div class="col-md-4 mb-3">
-              <label for="location">Rate</label>
-              <input id="location" formControlName="location" type="text" [value]="">
+              <label for="date">Date</label>
+              <input type="text" class="form-control" placeholder="Datepicker" id="date"
+                     [ngClass]="{'is-invalid': submitted && messageForm.controls.date.errors}"
+                     bsDatepicker formControlName="date" [(bsValue)]="date" [maxDate]="maxDate"/>
+              <div *ngIf="submitted && messageForm.controls.date.errors != null" class="alert alert-danger">
+                <div *ngIf="messageForm.controls.date.errors.required">
+                  The registing date is required.
+                </div>
+                <div *ngIf="messageForm.controls.date.errors.futureDate">
+                  Are you a time-traveller? You cannot register meal into the future.
+                </div>
+              </div>
             </div>
           </div>
           <button class="btn btn-dark rounded-circle p-2" type="submit">
@@ -55,3 +79,21 @@
     </div>
   </div>
 </div>
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Where are you?</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <agm-map id="agm-map" style="height: 150px" [latitude]="marker.lat" [longitude]="marker.lng"
+             [zoom]="13">
+      <agm-marker *ngIf="marker !== null" [longitude]="marker.lng" [latitude]="marker.lat" [label]="marker.label"
+                  [markerDraggable]="marker.draggable" (dragEnd)="setMarker($event)">
+      </agm-marker>
+    </agm-map>
+    <button (click)="hide()">Save</button>
+  </div>
+</ng-template>

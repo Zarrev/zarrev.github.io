@@ -7,6 +7,7 @@ import {Marker} from './history/marker.interface';
 })
 export class MealService {
 
+  private lastId = 2;
   private _meals: Meal[] = [
     {
       id: 0,
@@ -71,6 +72,12 @@ export class MealService {
   get fitBound(): Meal {
     const fitBoundMeals = this.meals.filter(meal => meal.fitBounds === true);
     return fitBoundMeals.length > 0 ? fitBoundMeals[0] : undefined;
+  }
+
+  public addMeal(meal: Meal) {
+    this.lastId++;
+    meal.id = this.lastId;
+    this._meals.push(meal);
   }
 
   public setMealFitBound(value: boolean, meal: Meal): void {

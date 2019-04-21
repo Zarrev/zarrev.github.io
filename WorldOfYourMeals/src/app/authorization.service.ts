@@ -24,6 +24,9 @@ export class AuthorizationService {
       this.nickname = this.loggedIn ? user.name : 'defualt_nickname';
     });
     this.settings = new Settings(true, true, 2);
+    // if (!navigator.onLine) {
+    //   this.loggedIn = true;
+    // }
   }
 
   signIn(): void {

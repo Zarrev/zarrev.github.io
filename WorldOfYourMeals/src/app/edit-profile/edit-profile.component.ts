@@ -34,6 +34,7 @@ export class EditProfileComponent implements OnInit {
     }
 
     this._success = true;
+    // TODO: Bugfix here later
     this.authorizationService.photourl = this._messageForm.value['profilpic'];
     this.authorizationService.setCoverUrl = this._messageForm.value['profilecover'];
     this.authorizationService.setNickname = this._messageForm.value['nickname'];

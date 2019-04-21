@@ -7,6 +7,7 @@ import {AgmCoreModule} from '@agm/core';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { RatingModule } from 'ngx-bootstrap/rating';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -64,7 +65,8 @@ export function provideConfig() {
     ModalModule.forRoot(),
     RatingModule.forRoot(),
     FormsModule,
-    AgmJsMarkerClustererModule
+    AgmJsMarkerClustererModule,
+    BsDatepickerModule.forRoot()
   ],
   providers: [
     {
