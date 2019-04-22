@@ -52,9 +52,8 @@ export class MealFormComponent implements OnInit {
     }
 
     this._success = true;
-    this.mealService.addMeal({id: 0, src: this._picture, name: this._messageForm.value.nameOfFood,
-      rate: this._messageForm.value.rate, date: this._messageForm.value.date, where: this._marker});
-    console.log(this._messageForm.value);
+    this.mealService.addMeal({$key: '0', src: this._picture, name: this._messageForm.value.nameOfFood,
+      rate: this._messageForm.value.rate, date: this._messageForm.value.date.getTime(), where: this._marker});
     this.location.back();
   }
 

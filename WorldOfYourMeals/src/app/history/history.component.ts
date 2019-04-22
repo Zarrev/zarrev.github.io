@@ -14,7 +14,8 @@ export class HistoryComponent implements OnInit, OnDestroy {
   private _fitBound = true;
   private jumped?: Meal;
 
-  constructor(private mealService: MealService,  private router: Router) {}
+  constructor(private mealService: MealService, private router: Router) {
+  }
 
   ngOnInit(): void {
     const navbarHeight = 56;
@@ -25,6 +26,14 @@ export class HistoryComponent implements OnInit, OnDestroy {
       const style = 'height: ' + h + 'px;';
       $('#agm-map').attr('style', style);
     });
+  }
+
+  toGallery(meal: Meal) {
+    if (meal !== null && meal !== undefined) {
+      return ['/history_gallery', meal.$key];
+    }
+
+    return ['/history_gallery', 'undefined'];
   }
 
   ngOnDestroy(): void {
@@ -47,7 +56,7 @@ export class HistoryComponent implements OnInit, OnDestroy {
   fitBound(meal: Meal): boolean {
     if (this.mealService.fitBound) {
       if (meal.fitBounds === true) {
-          this.jumped = meal;
+        this.jumped = meal;
       }
       return meal.fitBounds;
     }

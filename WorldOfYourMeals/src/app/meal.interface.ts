@@ -1,7 +1,7 @@
 import {Marker} from './marker.interface';
 
 export interface Meal {
-  id?: number;
+  $key: string;
   src: string;
   name: string;
   rate: number;

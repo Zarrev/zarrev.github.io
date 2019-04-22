@@ -62,13 +62,17 @@ export class HistoryGalleryComponent implements OnInit, OnDestroy, AfterViewInit
     return this._selectedMeal;
   }
 
+  get getFirstActive() {
+    return this.firstActive;
+  }
+
   ngOnDestroy(): void {
     $('body').css('background-image', '');
   }
 
   setActive() {
     for (let i = 0; i < this.meals.length; i++) {
-      if (this.meals[i].id === Number(this.firstActive)) {
+      if (this.meals[i].$key === this.firstActive) {
         this.activeSlideIndex = i;
         return;
       }
@@ -77,7 +81,7 @@ export class HistoryGalleryComponent implements OnInit, OnDestroy, AfterViewInit
   }
 
   onChange(event: number) {
-    this.router.navigate(['/history_gallery', this.mealService.meals[event].id]);
+    this.router.navigate(['/history_gallery', this.mealService.meals[event].$key]);
   }
 
   jump() {

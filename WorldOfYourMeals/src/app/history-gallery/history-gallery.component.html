@@ -7,6 +7,22 @@
       <app-rating class="opp" [rate]="meal.rate"></app-rating>
     </div>
   </slide>
+  <div *ngIf="getFirstActive === 'undefined' && meals.length === 0" [config]="{ show: true }" bsModal #autoShownModal="bs-modal"
+       class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-auto-name">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title pull-left">No meals</h4>
+          <button type="button" class="close pull-right" aria-label="Close" (click)="autoShownModal.hide()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <strong>You still does not have any meal.</strong>
+        </div>
+      </div>
+    </div>
+  </div>
 </carousel>
 <div class="fixed-left-bottom">
   <button type="button" class="btn btn-dark rounded-circle p-2" routerLink="/history">

@@ -11,7 +11,7 @@
     </div>
     <agm-map id="agm-map" style="height: 300px" [latitude]="47.498226" [longitude]="19.052491"
              [zoom]="8" (mapClick)="mapClicked($event)">
-      <agm-marker *ngIf="markerEventEmitter !== null" [longitude]="marker.lng" [latitude]="marker.lat" [label]="marker.label"
+      <agm-marker *ngIf="marker !== null && marker !== undefined" [longitude]="marker.lng" [latitude]="marker.lat" [label]="marker.label"
                   [markerDraggable]="draggable" (dragEnd)="setMarker($event)">
       </agm-marker>
     </agm-map>
