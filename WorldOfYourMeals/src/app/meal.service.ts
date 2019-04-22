@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
-import {Meal} from './history-gallery/meal.interface';
-import {Marker} from './history/marker.interface';
+import {Meal} from './meal.interface';
+import {Marker} from './marker.interface';
 
 @Injectable({
   providedIn: 'root'

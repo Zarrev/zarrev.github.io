@@ -2,7 +2,7 @@ import {AfterViewInit, Component, OnDestroy, OnInit, TemplateRef} from '@angular
 import {CarouselConfig} from 'ngx-bootstrap/carousel';
 import {BsModalService, BsModalRef} from 'ngx-bootstrap/modal';
 import * as $ from 'jquery';
-import {Meal} from './meal.interface';
+import {Meal} from '../meal.interface';
 import {DomSanitizer, SafeStyle} from '@angular/platform-browser';
 import {MealService} from '../meal.service';
 import {ActivatedRoute, Router} from '@angular/router';

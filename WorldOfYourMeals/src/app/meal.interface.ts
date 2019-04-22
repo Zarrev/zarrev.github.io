@@ -1,7 +1,7 @@
-import {Marker} from '../history/marker.interface';
+import {Marker} from './marker.interface';
 
 export interface Meal {
-  id: number;
+  id?: number;
   src: string;
   name: string;
   rate: number;

@@ -25,6 +25,7 @@ import { HistoryGalleryComponent } from './history-gallery/history-gallery.compo
 import { RatingComponent } from './rating/rating.component';
 import { AgmJsMarkerClustererModule } from '@agm/js-marker-clusterer';
 import { MealFormComponent } from './meal-form/meal-form.component';
+import { LocationModalComponent } from './location-modal/location-modal.component';
 
 
 export function provideConfig() {
@@ -51,7 +52,8 @@ export function provideConfig() {
     HistoryComponent,
     HistoryGalleryComponent,
     RatingComponent,
-    MealFormComponent
+    MealFormComponent,
+    LocationModalComponent
   ],
   imports: [
     BrowserModule,

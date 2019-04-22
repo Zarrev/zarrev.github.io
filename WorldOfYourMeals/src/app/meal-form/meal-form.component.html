@@ -49,7 +49,7 @@
           <div class="form-row">
             <div class="col-md-4 mb-3">
               <label for="location">Where?
-                <button type="button" class="btn-sm" (click)="findMe(template)">Find me</button>
+                <button type="button" class="btn-sm" (click)="findMe(modal)">Find me</button>
               </label>
               <input id="location" formControlName="location" type="text" [value]="getLocation()">
             </div>
@@ -80,20 +80,4 @@
   </div>
 </div>
 
-<ng-template #template>
-  <div class="modal-header">
-    <h4 class="modal-title pull-left">Where are you?</h4>
-    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <agm-map id="agm-map" style="height: 150px" [latitude]="marker.lat" [longitude]="marker.lng"
-             [zoom]="13">
-      <agm-marker *ngIf="marker !== null" [longitude]="marker.lng" [latitude]="marker.lat" [label]="marker.label"
-                  [markerDraggable]="marker.draggable" (dragEnd)="setMarker($event)">
-      </agm-marker>
-    </agm-map>
-    <button (click)="hide()">Save</button>
-  </div>
-</ng-template>
+<app-location-modal #modal (markerEventEmitter)="setMarkerFromModal($event)"></app-location-modal>

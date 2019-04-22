@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 
 import * as $ from 'jquery';
 import {MealService} from '../meal.service';
-import {Meal} from '../history-gallery/meal.interface';
+import {Meal} from '../meal.interface';
 import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
