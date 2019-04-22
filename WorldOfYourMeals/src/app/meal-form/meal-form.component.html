@@ -59,7 +59,7 @@
               <label for="date">Date</label>
               <input type="text" class="form-control" placeholder="Date" id="date"
                      [ngClass]="{'is-invalid': submitted && messageForm.controls.date.errors}"
-                     bsDatepicker formControlName="date" [(bsValue)]="date" [maxDate]="maxDate" [placement]="'top'"/>
+                     bsDatepicker formControlName="date" [bsConfig]="datePickerColorTheme" [(bsValue)]="date" [maxDate]="maxDate" [placement]="'top'"/>
               <div *ngIf="submitted && messageForm.controls.date.errors != null" class="alert alert-danger">
                 <div *ngIf="messageForm.controls.date.errors.required">
                   The registing date is required.

@@ -65,7 +65,7 @@ export class AuthorizationService {
   }
 
   set photourl(value: string) {
-    this.photourl = value;
+    this.userPhoto = value;
   }
 
   set setCoverUrl(value: string) {
@@ -81,7 +81,7 @@ export class AuthorizationService {
   }
 
   set setSettings(value: Settings) {
-    this.setSettings = value;
+    this.settings = value;
   }
 
   set setSettingsFromMap(value: Map<any, any>) {

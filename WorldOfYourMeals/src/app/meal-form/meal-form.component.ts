@@ -3,7 +3,7 @@ import {MealService} from '../meal.service';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Marker} from '../history/marker.interface';
 import {Location} from '@angular/common';
-import {BsModalRef, BsModalService} from 'ngx-bootstrap';
+import {BsDatepickerConfig, BsModalRef, BsModalService} from 'ngx-bootstrap';
 import * as $ from 'jquery';
 import { MouseEvent } from '@agm/core';
 
@@ -24,6 +24,7 @@ export class MealFormComponent implements OnInit {
   private _modalRef: BsModalRef;
   private _date = new Date();
   private _maxDate = new Date();
+  public datePickerColorTheme: Partial<BsDatepickerConfig> = Object.assign({}, { containerClass: 'theme-default' });
 
   public static futureDate(control: AbstractControl) {
     if (control && control.value && (new Date()) < (new Date(control.value))) {
@@ -70,6 +71,8 @@ export class MealFormComponent implements OnInit {
     console.log(this._messageForm.value);
     this.location.back();
   }
+
+
 
   findMe(template: TemplateRef<any>) {
     if (navigator.geolocation) {

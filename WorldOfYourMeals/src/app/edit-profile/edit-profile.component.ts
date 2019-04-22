@@ -20,8 +20,8 @@ export class EditProfileComponent implements OnInit {
     this._url = this.authorizationService.photourl;
     this._coverUrl = this.authorizationService.getCover();
     this._messageForm = this.formBuilder.group({
-      profilpic: [this._url, null],
-      profilecover: [this._coverUrl, null],
+      profilpic: ['', null],
+      profilecover: ['', null],
       nickname: [this.authorizationService.getUser.name, Validators.required]
     });
   }
@@ -34,10 +34,9 @@ export class EditProfileComponent implements OnInit {
     }
 
     this._success = true;
-    // TODO: Bugfix here later
-    this.authorizationService.photourl = this._messageForm.value['profilpic'];
-    this.authorizationService.setCoverUrl = this._messageForm.value['profilecover'];
-    this.authorizationService.setNickname = this._messageForm.value['nickname'];
+    this.authorizationService.photourl = this._url;
+    this.authorizationService.setCoverUrl = this._coverUrl;
+    this.authorizationService.setNickname = this._messageForm.value.nickname;
     this.router.navigateByUrl('/profile');
   }
 
