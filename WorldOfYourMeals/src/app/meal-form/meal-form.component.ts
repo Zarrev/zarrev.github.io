@@ -4,7 +4,6 @@ import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/form
 import {Marker} from '../history/marker.interface';
 import {Location} from '@angular/common';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap';
-import {Meal} from '../history-gallery/meal.interface';
 import * as $ from 'jquery';
 import { MouseEvent } from '@agm/core';
 
