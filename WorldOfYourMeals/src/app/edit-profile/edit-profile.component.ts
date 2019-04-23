@@ -22,7 +22,7 @@ export class EditProfileComponent implements OnInit {
     this._messageForm = this.formBuilder.group({
       profilpic: ['', null],
       profilecover: ['', null],
-      nickname: [this.authorizationService.getUser.name, Validators.required]
+      nickname: [this.authorizationService.getNickname, Validators.required]
     });
   }
 
@@ -41,10 +41,6 @@ export class EditProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-  }
-
-  get getSettings(): Settings {
-    return this.authorizationService.getSettings;
   }
 
   readUrl(event: any) {
@@ -75,39 +71,15 @@ export class EditProfileComponent implements OnInit {
     return this._coverUrl;
   }
 
-  set coverUrl(value: string) {
-    this._coverUrl = value;
-  }
-
   get url(): string {
     return this._url;
-  }
-
-  set url(value: string) {
-    this._url = value;
   }
 
   get messageForm(): FormGroup {
     return this._messageForm;
   }
 
-  set messageForm(value: FormGroup) {
-    this._messageForm = value;
-  }
-
   get submitted(): boolean {
     return this._submitted;
-  }
-
-  set submitted(value: boolean) {
-    this._submitted = value;
-  }
-
-  get success(): boolean {
-    return this._success;
-  }
-
-  set success(value: boolean) {
-    this._success = value;
   }
 }

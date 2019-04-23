@@ -57,23 +57,7 @@ export class SettingProfileComponent implements OnInit {
     return this._messageForm;
   }
 
-  set messageForm(value: FormGroup) {
-    this._messageForm = value;
-  }
-
   get submitted(): boolean {
     return this._submitted;
-  }
-
-  set submitted(value: boolean) {
-    this._submitted = value;
-  }
-
-  get success(): boolean {
-    return this._success;
-  }
-
-  set success(value: boolean) {
-    this._success = value;
   }
 }

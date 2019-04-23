@@ -1,8 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 
-import {SocialLoginModule, AuthServiceConfig} from 'angularx-social-login';
-import {FacebookLoginProvider} from 'angularx-social-login';
 import {AgmCoreModule} from '@agm/core';
 import {CarouselModule} from 'ngx-bootstrap/carousel';
 import {ModalModule} from 'ngx-bootstrap/modal';
@@ -29,17 +27,8 @@ import {RatingComponent} from './rating/rating.component';
 import {AgmJsMarkerClustererModule} from '@agm/js-marker-clusterer';
 import {MealFormComponent} from './meal-form/meal-form.component';
 import {LocationModalComponent} from './location-modal/location-modal.component';
+import {AngularFireAuthModule} from '@angular/fire/auth';
 
-
-export function provideConfig() {
-  const config = new AuthServiceConfig([
-    {
-      id: FacebookLoginProvider.PROVIDER_ID,
-      provider: new FacebookLoginProvider('551502018665214')
-    }
-  ]);
-  return config;
-}
 
 @NgModule({
   declarations: [
@@ -60,7 +49,6 @@ export function provideConfig() {
   ],
   imports: [
     BrowserModule,
-    SocialLoginModule,
     AppRoutingModule.forRoot(),
     ReactiveFormsModule,
     AgmCoreModule.forRoot({
@@ -73,14 +61,10 @@ export function provideConfig() {
     AgmJsMarkerClustererModule,
     BsDatepickerModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    AngularFireAuthModule
   ],
-  providers: [
-    {
-      provide: AuthServiceConfig,
-      useFactory: provideConfig
-    }
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

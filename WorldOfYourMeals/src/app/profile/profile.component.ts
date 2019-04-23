@@ -13,10 +13,6 @@ export class ProfileComponent implements OnInit {
   private searchedElementProfile: HTMLElement;
 
   constructor(private authorizationService: AuthorizationService) {
-    this.authorizationService.authorizationState.subscribe(user => {
-      this.authorizationService.setUser = user;
-      this.authorizationService.setLoggedIn = user != null;
-    });
   }
 
   ngOnInit() {}

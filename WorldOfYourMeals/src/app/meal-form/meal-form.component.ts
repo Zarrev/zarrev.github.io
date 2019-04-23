@@ -53,7 +53,7 @@ export class MealFormComponent implements OnInit {
 
     this._success = true;
     this.mealService.addMeal({$key: '0', src: this._picture, name: this._messageForm.value.nameOfFood,
-      rate: this._messageForm.value.rate, date: this._messageForm.value.date.getTime(), where: this._marker});
+      rate: this._messageForm.value.rate, date: this._messageForm.value.date, where: this._marker});
     this.location.back();
   }
 
@@ -86,7 +86,7 @@ export class MealFormComponent implements OnInit {
         };
       }, (error) => {
         this.errorCallbackHandling(error.code, modal);
-      }, {enableHighAccuracy: true, timeout: 1000});
+      }, {enableHighAccuracy: true, timeout: 600000});
     } else {
       modal.message = 'error';
       modal.openModal();

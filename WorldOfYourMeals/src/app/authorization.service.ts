@@ -1,7 +1,9 @@
 import {Compiler, Injectable} from '@angular/core';
-import {AuthService, FacebookLoginProvider, SocialUser} from 'angularx-social-login';
 import {Observable, Subscription} from 'rxjs';
 import {Settings} from './settings-of-user';
+import { AngularFireAuth } from '@angular/fire/auth';
+import {auth, User} from 'firebase/app';
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -9,19 +11,20 @@ import {Settings} from './settings-of-user';
 export class AuthorizationService {
 
   private subscription: Subscription;
-  private user: SocialUser;
+  private user: User;
   private loggedIn: boolean;
-  private coverUrl = '/assets/img/twotone-photo_size_select_actual-24px.svg';
+  private coverUrl: string;
   private settings: Settings;
   private userPhoto: string;
   private nickname: string;
 
-  constructor(private authService: AuthService, private compiler: Compiler) {
-    this.subscription = this.authorizationState.subscribe(user => {
+  constructor(private compiler: Compiler, private afAuth: AngularFireAuth, private router: Router) {
+    this.subscription = this.afAuth.authState.subscribe(user => {
       this.user = user;
       this.loggedIn = user != null;
-      this.userPhoto = this.loggedIn ? user.photoUrl : null;
-      this.nickname = this.loggedIn ? user.name : 'defualt_nickname';
+      this.userPhoto = this.loggedIn ? user.photoURL : null;
+      this.nickname = this.loggedIn ? user.displayName : 'defualt_nickname';
+      this.coverUrl = '/assets/img/twotone-photo_size_select_actual-24px.svg';
     });
     this.settings = new Settings(true, true, 2);
     // if (!navigator.onLine) {
@@ -30,26 +33,28 @@ export class AuthorizationService {
   }
 
   signIn(): void {
-    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID).finally(() => {
-        this.subscription = this.authorizationState.subscribe(user => {
-          this.user = user;
-          this.loggedIn = user != null;
-          this.userPhoto = this.loggedIn ? user.photoUrl : null;
-          this.nickname = this.loggedIn ? user.name : 'defualt_nickname';
-        });
-      }
-    );
+    const provider = new auth.FacebookAuthProvider();
+    this.afAuth.auth.signInWithPopup(provider).then(res => {
+      this.user = res.user;
+      this.loggedIn = res.user != null;
+      this.userPhoto = this.loggedIn ? res.user.photoURL : null;
+      this.nickname = this.loggedIn ? res.user.displayName : 'defualt_nickname';
+      this.coverUrl = '/assets/img/twotone-photo_size_select_actual-24px.svg';
+    }, err => {
+      console.log(err);
+    });
   }
 
-  signOut(user: SocialUser, loggedIn: boolean): void {
-    this.authService.signOut().finally(() => {
+  signOut(): void {
+    this.afAuth.auth.signOut().then(() => {
       this.user = null;
       this.loggedIn = false;
       this.userPhoto = null;
       this.nickname = 'defualt_nickname';
+      this.coverUrl = null;
+    }).finally(() => {
+      this.router.navigate(['home']);
     });
-    this.subscription.unsubscribe();
-    this.compiler.clearCache();
   }
 
   get getNickname() {
@@ -61,7 +66,7 @@ export class AuthorizationService {
   }
 
   get photourl() {
-    return this.userPhoto != null ? this.userPhoto : this.user.photoUrl;
+    return this.userPhoto != null ? this.userPhoto : this.user.photoURL;
   }
 
   set photourl(value: string) {
@@ -76,40 +81,24 @@ export class AuthorizationService {
     return this.settings;
   }
 
-  get getSettingsAsString(): string {
-    return JSON.stringify(this.settings);
-  }
-
-  set setSettings(value: Settings) {
-    this.settings = value;
-  }
-
   set setSettingsFromMap(value: Map<any, any>) {
     this.settings.madeFromMap = value;
   }
 
-  get authorizationState(): Observable<SocialUser> {
-    return this.authService.authState;
+  get authorizationState(): Observable<User> {
+    return this.afAuth.authState;
   }
 
   get isLoggedIn(): boolean {
     return this.loggedIn;
   }
 
-  get getUser(): SocialUser {
+  get getUser(): User {
     return this.user;
   }
 
   getCover(): string {
     // ideiglenesen egy default képet töltök be
     return this.coverUrl;
-  }
-
-  set setUser(value: SocialUser) {
-    this.user = value;
-  }
-
-  set setLoggedIn(value: boolean) {
-    this.loggedIn = value;
   }
 }

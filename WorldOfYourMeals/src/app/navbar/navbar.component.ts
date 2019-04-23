@@ -26,10 +26,6 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.authorizationService.authorizationState.subscribe(user => {
-      this.authorizationService.setUser = user;
-      this.authorizationService.setLoggedIn = user != null;
-    });
     this.expander();
   }
 
@@ -52,6 +48,6 @@ export class NavbarComponent implements OnInit {
   }
 
   public logOut(): void {
-    this.authorizationService.signOut(this.authorizationService.getUser, this.authorizationService.isLoggedIn);
+    this.authorizationService.signOut();
   }
 }
