@@ -28,6 +28,7 @@ import {AgmJsMarkerClustererModule} from '@agm/js-marker-clusterer';
 import {MealFormComponent} from './meal-form/meal-form.component';
 import {LocationModalComponent} from './location-modal/location-modal.component';
 import {AngularFireAuthModule} from '@angular/fire/auth';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 
 @NgModule({
@@ -62,7 +63,8 @@ import {AngularFireAuthModule} from '@angular/fire/auth';
     BsDatepickerModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]
