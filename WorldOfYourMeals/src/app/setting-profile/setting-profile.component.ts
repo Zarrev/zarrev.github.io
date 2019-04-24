@@ -2,7 +2,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
-import {Settings} from '../settings-of-user';
+import {Settings} from '../user.settings.interface';
 import {AuthorizationService} from '../authorization.service';
 
 @Component({
@@ -15,8 +15,10 @@ export class SettingProfileComponent implements OnInit {
   private _messageForm: FormGroup;
   private _submitted = false;
   private _success = false;
+  private settings: Settings;
 
   constructor(private formBuilder: FormBuilder, private router: Router, private authorizationService: AuthorizationService) {
+    this.settings = this.authorizationService.getSettings;
     this._messageForm = this.formBuilder.group({
       notifyCheck: [this.getSettings.notifyCheck, null],
       notifyNumber: [this.getSettings.notifyNumber, [Validators.min(1), Validators.max(24),
@@ -41,7 +43,12 @@ export class SettingProfileComponent implements OnInit {
     }
 
     this._success = true;
-    this.authorizationService.setSettingsFromMap = this._messageForm.value;
+    let notiNum = this._messageForm.value.notifyNumber;
+    if (notiNum === null || notiNum === undefined) {
+      notiNum = 0;
+    }
+    this.authorizationService.setting = {gps: this._messageForm.value.gps, notifyCheck: this._messageForm.value.notifyCheck,
+      notifyNumber: notiNum};
     this.router.navigateByUrl('/profile');
   }
 

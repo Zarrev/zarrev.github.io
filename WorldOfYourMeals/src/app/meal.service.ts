@@ -50,7 +50,7 @@ export class MealService implements OnDestroy {
   }
 
   public addMeal(meal: Meal) {
-    const newMealKey = this.mealsRef.push({
+    this.mealsRef.push({
       user_id: this.uid,
       name: meal.name,
       src: meal.src,

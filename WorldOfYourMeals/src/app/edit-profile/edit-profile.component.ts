@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {AuthorizationService} from '../authorization.service';
-import {Settings} from '../settings-of-user';
+import {Settings} from '../user.settings.interface';
+import {Profile} from '../profile.interface';
 
 @Component({
   selector: 'app-edit-profile',
@@ -10,19 +11,17 @@ import {Settings} from '../settings-of-user';
   styleUrls: ['./edit-profile.component.scss']
 })
 export class EditProfileComponent implements OnInit {
-  private _url: string;
-  private _coverUrl: string;
+  private profile: Profile;
   private _messageForm: FormGroup;
   private _submitted = false;
   private _success = false;
 
   constructor(private formBuilder: FormBuilder, private router: Router, private authorizationService: AuthorizationService) {
-    this._url = this.authorizationService.photourl;
-    this._coverUrl = this.authorizationService.getCover();
+    this.profile = this.authorizationService.getProfile;
     this._messageForm = this.formBuilder.group({
       profilpic: ['', null],
       profilecover: ['', null],
-      nickname: [this.authorizationService.getNickname, Validators.required]
+      nickname: [this.profile.nickname, Validators.required]
     });
   }
 
@@ -34,9 +33,8 @@ export class EditProfileComponent implements OnInit {
     }
 
     this._success = true;
-    this.authorizationService.photourl = this._url;
-    this.authorizationService.setCoverUrl = this._coverUrl;
-    this.authorizationService.setNickname = this._messageForm.value.nickname;
+    this.authorizationService.setProfile = {nickname: this._messageForm.value.nickname, settings: this.profile.settings,
+      coverUrl: this.profile.coverUrl, userPhoto: this.profile.userPhoto, $key: this.profile.$key};
     this.router.navigateByUrl('/profile');
   }
 
@@ -48,7 +46,7 @@ export class EditProfileComponent implements OnInit {
        const reader = new FileReader();
 
        reader.onload = (eventOther: any) => {
-         this._url = eventOther.target.result;
+         this.profile.userPhoto = eventOther.target.result;
       };
 
        reader.readAsDataURL(event.target.files[0]);
@@ -60,7 +58,7 @@ export class EditProfileComponent implements OnInit {
       const reader = new FileReader();
 
       reader.onload = (eventOther: any) => {
-        this._coverUrl = eventOther.target.result;
+        this.profile.coverUrl = eventOther.target.result;
       };
 
       reader.readAsDataURL(event.target.files[0]);
@@ -68,11 +66,11 @@ export class EditProfileComponent implements OnInit {
   }
 
   get coverUrl(): string {
-    return this._coverUrl;
+    return this.profile.coverUrl;
   }
 
   get url(): string {
-    return this._url;
+    return this.profile.userPhoto;
   }
 
   get messageForm(): FormGroup {
