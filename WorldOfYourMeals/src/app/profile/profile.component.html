@@ -2,9 +2,9 @@
   <div class="row">
     <div class="col">
       <div class="card hovercard">
-        <img [src]="cover" class="cardheader" [alt]="cover"/>
+        <img [src]="cover" class="cardheader" style="object-fit: cover" [alt]="cover"/>
         <div class="avatar">
-          <img [src]="userProfilPic" alt="Profile Pic"/>
+          <img [src]="userProfilPic" style="object-fit: cover" alt="Profile Pic"/>
         </div>
         <div class="info">
           <h5 class="card-title">{{userNickname}}</h5>
@@ -14,4 +14,5 @@
     </div>
   </div>
 </div>
+
 <router-outlet></router-outlet>
