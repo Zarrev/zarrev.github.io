@@ -12,7 +12,7 @@
 * enter the value set as the --base-href flag when deploying to a live URL
 * if not deploying to a live URL, and only running locally, set this to null, as the URL parsing fix will not be necessary
 */
-const SITE_BASE_HREF = 'https://your-url.com/';
+const SITE_BASE_HREF = ' https://zarrev.github.io/';
 
 
 
