@@ -650,6 +650,8 @@ SOFTWARE.
 
 
 
+ngx-bootstrap/alert
+
 ngx-bootstrap/carousel
 
 ngx-bootstrap/chronos
