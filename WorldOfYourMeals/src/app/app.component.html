@@ -1,2 +1,6 @@
 <app-navbar [title]="title"></app-navbar>
+<div *ngIf="update" role="alert" class="alert alert-info" style="margin-bottom: 0">
+  <button type="button" class="btn-sm btn-primary" (click)="updateAndClose()">Update now!</button>
+  <strong> ←←← There is an update for this application!</strong>
+</div>
 <router-outlet></router-outlet>

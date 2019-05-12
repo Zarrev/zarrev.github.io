@@ -5,13 +5,16 @@ import {Injectable} from '@angular/core';
 })
 export class ScrollerService {
 
-  private clicked = false;
-  private lastScrollTop = pageYOffset;
+  private clicked: boolean;
+  private lastScrollTop: number;
   private img: HTMLElement;
   private searchedElement: HTMLElement;
-  private isVisible = false;
+  private isVisible: boolean;
 
   constructor() {
+    this.clicked = false;
+    this.isVisible = false;
+    this.lastScrollTop = pageYOffset;
   }
 
   findImageElement(): void {
@@ -25,6 +28,8 @@ export class ScrollerService {
 
   private scrollToView(target: string) {
     document.getElementById(target).scrollIntoView({behavior: 'smooth'});
+    // window.scrollBy(0, -56); TODO: azt hittem ez megoldja, de ha benne van nem csinál semmit,
+    // TODO: másik hiba, hogy nem vált át a click a listenerben false-ra
   }
 
   scrollFunc(target: string) {

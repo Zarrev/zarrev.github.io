@@ -29,16 +29,16 @@
         <a class="nav-link" routerLink="/home">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/profile">Profile</a>
+        <a id="profile_link" class="nav-link" routerLink="/profile">Profile</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/history">History</a>
+        <a class="nav-link" [routerLink]="toGallery()">History</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" tabindex="-1" routerLink="/home" (click)="scrollToAbout()">About</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" tabindex="-2" (click)="logOut()">Sign out</a>
+        <a id="logout_link" class="nav-link" tabindex="-2" (click)="logOut()">Sign out</a>
       </li>
     </ul>
   </div>

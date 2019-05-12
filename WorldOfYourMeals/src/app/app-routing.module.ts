@@ -12,6 +12,7 @@ import {ScrollerService} from './scroller.service';
 import {HistoryGalleryComponent} from './history-gallery/history-gallery.component';
 import {MealFormComponent} from './meal-form/meal-form.component';
 import {MealService} from './meal.service';
+import {OnlineOfflineService} from './online-offline.service';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -41,6 +42,7 @@ export class AppRoutingModule {
     return {
       ngModule: AppRoutingModule,
       providers: [
+        OnlineOfflineService,
         AuthorizationService,
         ScrollerService,
         MealService

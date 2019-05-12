@@ -1,6 +1,11 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import {environment} from '../environments/environment';
 
+
+import {AgmJsMarkerClustererModule} from '@agm/js-marker-clusterer';
 import {AgmCoreModule} from '@agm/core';
 import {CarouselModule} from 'ngx-bootstrap/carousel';
 import {ModalModule} from 'ngx-bootstrap/modal';
@@ -8,7 +13,8 @@ import {RatingModule} from 'ngx-bootstrap/rating';
 import {BsDatepickerModule} from 'ngx-bootstrap/datepicker';
 import {AngularFireModule} from '@angular/fire';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
-import {environment} from '../environments/environment';
+import {AngularFireAuthModule} from '@angular/fire/auth';
+
 
 import {AppComponent} from './app.component';
 import {HomeComponent} from './home/home.component';
@@ -20,15 +26,11 @@ import {ScrollerComponent} from './scroller/scroller.component';
 import {DiagramComponent} from './diagram/diagram.component';
 import {EditProfileComponent} from './edit-profile/edit-profile.component';
 import {SettingProfileComponent} from './setting-profile/setting-profile.component';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HistoryComponent} from './history/history.component';
 import {HistoryGalleryComponent} from './history-gallery/history-gallery.component';
 import {RatingComponent} from './rating/rating.component';
-import {AgmJsMarkerClustererModule} from '@agm/js-marker-clusterer';
 import {MealFormComponent} from './meal-form/meal-form.component';
 import {LocationModalComponent} from './location-modal/location-modal.component';
-import {AngularFireAuthModule} from '@angular/fire/auth';
-import { ServiceWorkerModule } from '@angular/service-worker';
 
 
 @NgModule({

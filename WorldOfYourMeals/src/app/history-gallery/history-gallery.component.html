@@ -24,7 +24,7 @@
     </div>
   </div>
 </carousel>
-<div class="fixed-left-bottom">
+<div class="fixed-left-bottom" [hidden]="!isOnline()">
   <button type="button" class="btn btn-dark rounded-circle p-2" routerLink="/history">
     <img style="filter: invert(100%);" src="assets/img/switch.svg"
          width="30" height="30" alt="">
@@ -45,13 +45,15 @@
     </button>
   </div>
   <div class="modal-body">
-    <img [src]="selectedMeal.src" class="img-fluid">
+    <div style="text-align: center">
+      <img [src]="selectedMeal.src" class="img-fluid">
+    </div>
     <div class="star-format">
       <app-rating [rate]="selectedMeal.rate"></app-rating>
       <p>{{selectedMeal.date.toDateString()}}</p>
       <p>Latitude: <br> {{selectedMeal.where.lat}}</p>
       <p>Longitude: <br> {{selectedMeal.where.lng}}</p> <br>
-      <button (click)="jump()">Jump to the marker</button>
+      <button [hidden]="!isOnline()" (click)="jump()">Jump to the marker</button>
     </div>
   </div>
 </ng-template>

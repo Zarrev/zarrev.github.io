@@ -1,12 +1,13 @@
 import {Injectable} from '@angular/core';
-import {Observable, Subscription} from 'rxjs';
+import {Observable, of, ReplaySubject, Subscription} from 'rxjs';
 import {Settings} from './user.settings.interface';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {auth, User} from 'firebase/app';
 import {Router} from '@angular/router';
-import {AngularFireDatabase, AngularFireList, AngularFireObject} from '@angular/fire/database';
+import {AngularFireDatabase, AngularFireList} from '@angular/fire/database';
 import {Profile} from './profile.interface';
-import * as firebase from 'firebase';
+import * as firebase from 'firebase/app';
+import 'firebase/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,7 @@ export class AuthorizationService {
 
   private subscription: Subscription;
   private user: User;
+  private userRPSubject: ReplaySubject<User> = new ReplaySubject<User>(1);
   private loggedIn: boolean;
   private profile: Profile;
   profileRef: AngularFireList<any>;
@@ -24,6 +26,7 @@ export class AuthorizationService {
     this.afAuth.auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL).then(() => {
       this.subscription = this.afAuth.authState.subscribe(user => {
         this.user = user;
+        this.setUser$(user);
         this.loggedIn = user != null;
         this.profile = {
           $key: '',
@@ -135,6 +138,18 @@ export class AuthorizationService {
 
   get getUser(): User {
     return this.user;
+  }
+
+  setUser$(user: User): void {
+    this.userRPSubject.next(user);
+  }
+
+  getUser$(): Observable<User> {
+    return this.userRPSubject.asObservable();
+  }
+
+  getObservableUser(): Observable<User> {
+    return of(this.user);
   }
 
   set setting(settings: Settings) {

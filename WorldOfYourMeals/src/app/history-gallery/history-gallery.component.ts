@@ -89,4 +89,8 @@ export class HistoryGalleryComponent implements OnInit, OnDestroy, AfterViewInit
     this.modalRef.hide();
     this.router.navigate(['/history']);
   }
+
+  isOnline() {
+    return !!window.navigator.onLine;
+  }
 }
