@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1557616456714,
+  "timestamp": 1557619440498,
   "index": "https://zarrev.github.io/index.html",
   "assetGroups": [
     {
@@ -49,7 +49,8 @@
         "https://zarrev.github.io/assets/scripts/canvasjs/canvasjs.min.js",
         "https://zarrev.github.io/assets/scripts/canvasjs/instruction.txt",
         "https://zarrev.github.io/assets/scripts/canvasjs/jquery.canvasjs.min.js",
-        "https://zarrev.github.io/assets/scripts/canvasjs/license.txt"
+        "https://zarrev.github.io/assets/scripts/canvasjs/license.txt",
+        "https://zarrev.github.io/assets/scripts/swfix/fix-sw.ts"
       ],
       "patterns": []
     }
@@ -82,6 +83,7 @@
     "https://zarrev.github.io/assets/scripts/canvasjs/instruction.txt": "520248433759f5cf1e531ed3dc0bf6119abd857f",
     "https://zarrev.github.io/assets/scripts/canvasjs/jquery.canvasjs.min.js": "29d43aac93848e6ae60acff06f0846cb6080c15f",
     "https://zarrev.github.io/assets/scripts/canvasjs/license.txt": "48058cf354df8f69fbc325e56c9ceba5480e457e",
+    "https://zarrev.github.io/assets/scripts/swfix/fix-sw.ts": "38b04ec07d75f2320fcd83aa280b559b088050df",
     "https://zarrev.github.io/es2015-polyfills.c5dd28b362270c767b34.js": "b7a81c61d32b0b12737f0c13f45973ba391cd7f9",
     "https://zarrev.github.io/favicon.ico": "84161b857f5c547e3699ddfbffc6d8d737542e01",
     "https://zarrev.github.io/index.html": "7f6e5e3e976aef2f641bb3f2838114fe5333f504",
