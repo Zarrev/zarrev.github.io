@@ -6,6 +6,7 @@ import {auth, User} from 'firebase/app';
 import {Router} from '@angular/router';
 import {AngularFireDatabase, AngularFireList, AngularFireObject} from '@angular/fire/database';
 import {Profile} from './profile.interface';
+import * as firebase from 'firebase';
 
 @Injectable({
   providedIn: 'root'
@@ -20,25 +21,28 @@ export class AuthorizationService {
 
   constructor(private afAuth: AngularFireAuth, private router: Router, private db: AngularFireDatabase) {
     const defaultCover = '/assets/img/twotone-photo_size_select_actual-24px.svg';
-    this.subscription = this.afAuth.authState.subscribe(user => {
-      this.user = user;
-      this.loggedIn = user != null;
-      this.profile = {
-        $key: '',
-        userPhoto: this.loggedIn ? user.photoURL : null,
-        nickname: this.loggedIn ? user.displayName : 'defualt_nickname',
-        coverUrl: defaultCover,
-        settings: {gps: true, notifyCheck: true, notifyNumber: 2}
-      };
-      if (user) {
-        this.getProfileRef().snapshotChanges().subscribe(data => {
-          data.forEach(item => {
-            this.profile = (item.payload.toJSON()) as Profile;
-            this.profile.$key = item.key;
+    this.afAuth.auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL).then(() => {
+      this.subscription = this.afAuth.authState.subscribe(user => {
+        this.user = user;
+        this.loggedIn = user != null;
+        this.profile = {
+          $key: '',
+          userPhoto: this.loggedIn ? user.photoURL : null,
+          nickname: this.loggedIn ? user.displayName : 'defualt_nickname',
+          coverUrl: defaultCover,
+          settings: {gps: true, notifyCheck: true, notifyNumber: 2}
+        };
+        if (user) {
+          this.getProfileRef().snapshotChanges().subscribe(data => {
+            data.forEach(item => {
+              this.profile = (item.payload.toJSON()) as Profile;
+              this.profile.$key = item.key;
+            });
           });
-        });
-      }
+        }
+      });
     });
+
     // if (!navigator.onLine) {
     //   this.loggedIn = true;
     // }
@@ -56,21 +60,23 @@ export class AuthorizationService {
 
   signIn(): void {
     const provider = new auth.FacebookAuthProvider();
-    this.afAuth.auth.signInWithPopup(provider).then(res => {
-      this.user = res.user;
-      this.loggedIn = res.user != null;
-      if (this.user) {
-        this.getProfileRef().snapshotChanges().subscribe(data => {
-          if (!this.profile) {
-            data.forEach(item => {
-              this.profile = (item.payload.toJSON()) as Profile;
-              this.profile.$key = item.key;
-            });
-          }
-        });
-      }
-    }, err => {
-      console.log(err);
+    this.afAuth.auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL).then(() => {
+      this.afAuth.auth.signInWithPopup(provider).then(res => {
+        this.user = res.user;
+        this.loggedIn = res.user != null;
+        if (this.user) {
+          this.getProfileRef().snapshotChanges().subscribe(data => {
+            if (!this.profile) {
+              data.forEach(item => {
+                this.profile = (item.payload.toJSON()) as Profile;
+                this.profile.$key = item.key;
+              });
+            }
+          });
+        }
+      }, err => {
+        console.log(err);
+      });
     });
   }
 
