@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1557710139039,
+  "timestamp": 1557767744830,
   "index": "https://zarrev.github.io/index.html",
   "assetGroups": [
     {
@@ -8,22 +8,17 @@
       "installMode": "prefetch",
       "updateMode": "prefetch",
       "urls": [
-        "https://zarrev.github.io/es2015-polyfills.c5dd28b362270c767b34.js",
-        "https://zarrev.github.io/favicon.ico",
-        "https://zarrev.github.io/index.html",
-        "https://zarrev.github.io/main.7ef79ca8c0f89c7e669d.js",
-        "https://zarrev.github.io/polyfills.8bbb231b43165d65d357.js",
-        "https://zarrev.github.io/runtime.26209474bfa8dc87a77c.js",
-        "https://zarrev.github.io/scripts.9cd48bd7d0369c86b6e7.js",
-        "https://zarrev.github.io/styles.06e27e2e0f8b5a573a1c.css"
-      ],
-      "patterns": []
-    },
-    {
-      "name": "assets",
-      "installMode": "lazy",
-      "updateMode": "prefetch",
-      "urls": [
+        "https://zarrev.github.io/assets/icons/apple-icon-114x114.png",
+        "https://zarrev.github.io/assets/icons/apple-icon-120x120.png",
+        "https://zarrev.github.io/assets/icons/apple-icon-144x144.png",
+        "https://zarrev.github.io/assets/icons/apple-icon-152x152.png",
+        "https://zarrev.github.io/assets/icons/apple-icon-180x180.png",
+        "https://zarrev.github.io/assets/icons/apple-icon-57x57.png",
+        "https://zarrev.github.io/assets/icons/apple-icon-60x60.png",
+        "https://zarrev.github.io/assets/icons/apple-icon-72x72.png",
+        "https://zarrev.github.io/assets/icons/apple-icon-76x76.png",
+        "https://zarrev.github.io/assets/icons/apple-icon-precomposed.png",
+        "https://zarrev.github.io/assets/icons/apple-icon.png",
         "https://zarrev.github.io/assets/icons/icon-128x128.png",
         "https://zarrev.github.io/assets/icons/icon-144x144.png",
         "https://zarrev.github.io/assets/icons/icon-152x152.png",
@@ -51,13 +46,32 @@
         "https://zarrev.github.io/assets/scripts/canvasjs/instruction.txt",
         "https://zarrev.github.io/assets/scripts/canvasjs/jquery.canvasjs.min.js",
         "https://zarrev.github.io/assets/scripts/canvasjs/license.txt",
-        "https://zarrev.github.io/assets/scripts/swfix/fix-sw.ts"
+        "https://zarrev.github.io/assets/scripts/swfix/fix-sw.ts",
+        "https://zarrev.github.io/es2015-polyfills.c5dd28b362270c767b34.js",
+        "https://zarrev.github.io/favicon.ico",
+        "https://zarrev.github.io/index.html",
+        "https://zarrev.github.io/main.be8319da5dac4022dcc3.js",
+        "https://zarrev.github.io/polyfills.8bbb231b43165d65d357.js",
+        "https://zarrev.github.io/runtime.26209474bfa8dc87a77c.js",
+        "https://zarrev.github.io/scripts.9cd48bd7d0369c86b6e7.js",
+        "https://zarrev.github.io/styles.06e27e2e0f8b5a573a1c.css"
       ],
       "patterns": []
     }
   ],
   "dataGroups": [],
   "hashTable": {
+    "https://zarrev.github.io/assets/icons/apple-icon-114x114.png": "e1eae5cbc9248b95d3e025f39940c109932dda64",
+    "https://zarrev.github.io/assets/icons/apple-icon-120x120.png": "c3c4e4257a95da045a8f5e41276117f544e79ff4",
+    "https://zarrev.github.io/assets/icons/apple-icon-144x144.png": "18a7665eb96a14b18ae5e275a9d82d7e8e4fe6e0",
+    "https://zarrev.github.io/assets/icons/apple-icon-152x152.png": "639d010e7e8390b34b5f17ba9ef3b3a22057bbc1",
+    "https://zarrev.github.io/assets/icons/apple-icon-180x180.png": "426c12e03c5098a09be51ff4ed72870d8a3a5b23",
+    "https://zarrev.github.io/assets/icons/apple-icon-57x57.png": "eace9fbb0959fe2534c47f5d9db971f098f2e8b2",
+    "https://zarrev.github.io/assets/icons/apple-icon-60x60.png": "b7e3caacd9b11100aa3db64a9dddc322466d249f",
+    "https://zarrev.github.io/assets/icons/apple-icon-72x72.png": "10b8914c71e523e53311c84d7dac5420427cb064",
+    "https://zarrev.github.io/assets/icons/apple-icon-76x76.png": "7a75e1c55d48867ce15c0972ffec49bee4f5f6fc",
+    "https://zarrev.github.io/assets/icons/apple-icon-precomposed.png": "521cb24579161b503a9552b14946036fe2b5f572",
+    "https://zarrev.github.io/assets/icons/apple-icon.png": "521cb24579161b503a9552b14946036fe2b5f572",
     "https://zarrev.github.io/assets/icons/icon-128x128.png": "043966145241774264703c2f9c3881fe90b9603a",
     "https://zarrev.github.io/assets/icons/icon-144x144.png": "ed279c66f1c9d41998bbbc499fba56494e878420",
     "https://zarrev.github.io/assets/icons/icon-152x152.png": "0fc2fb28b558c698e9923e8c007f60e59b31ce74",
@@ -88,8 +102,8 @@
     "https://zarrev.github.io/assets/scripts/swfix/fix-sw.ts": "096a08eba36185aee3b7ed66ca935c1e28b4540f",
     "https://zarrev.github.io/es2015-polyfills.c5dd28b362270c767b34.js": "b7a81c61d32b0b12737f0c13f45973ba391cd7f9",
     "https://zarrev.github.io/favicon.ico": "47e8cb26aeccb479bd3bd598be264c9aeb0810c9",
-    "https://zarrev.github.io/index.html": "3cb7e98f0bdee338bdd1cb87a0b25277634c4fb7",
-    "https://zarrev.github.io/main.7ef79ca8c0f89c7e669d.js": "3d96ae80fd1c084b0c4421697090bfed8299868f",
+    "https://zarrev.github.io/index.html": "53150c3a16785772d2302e156782a1e040ee3076",
+    "https://zarrev.github.io/main.be8319da5dac4022dcc3.js": "236c75c27048ff6e74686e9a16d04a727f6f5522",
     "https://zarrev.github.io/polyfills.8bbb231b43165d65d357.js": "ffa449995bf2eba2ccd0a002417214f7eb75e7b5",
     "https://zarrev.github.io/runtime.26209474bfa8dc87a77c.js": "b62956c2192bfe5516d6374e753773901ed50ec5",
     "https://zarrev.github.io/scripts.9cd48bd7d0369c86b6e7.js": "8d5c35e8a0970a5bfc2eec6f2636b57adc03aa8d",
