@@ -14,6 +14,7 @@
     "buildGHP": "ng build --prod --base-href \"https://zarrev.github.io/\"",
     "fix-sw": "node src/assets/scripts/swfix/fix-sw.ts  https://zarrev.github.io/",
     "instant-deploy": "ng build --prod --base-href \"https://zarrev.github.io/\" && node src/assets/scripts/swfix/fix-sw.ts  https://zarrev.github.io/ && ngh --branch=master --message=\"instant deploy for test\"",
+    "instant-deploy-v2": "ng build --prod --base-href \"https://zarrev.github.io/\" && ngh --branch=master --message=\"instant deploy for test\"",
     "deploy": "ngh --branch=master"
   },
   "private": true,
@@ -40,6 +41,7 @@
     "http-server": "^0.11.1",
     "jquery": "^3.4.0",
     "js-marker-clusterer": "^1.0.0",
+    "lz-string": "^1.4.4",
     "ngx-bootstrap": "^4.0.1",
     "popper.js": "^1.15.0",
     "replace-in-file": "^4.0.0",

@@ -30,7 +30,7 @@ export class MealService implements OnDestroy {
         this.uid = user.uid;
         if (this.uid !== undefined && this.uid != null) {
           this.subscriptionOfMeals = this.getMealsRef().snapshotChanges().subscribe(data => {
-            if (data.length > this._meals.length) {
+            if (data.length !== this._meals.length) {
               this._meals = [];
               this.indexedDb.delete().then(() => {
                 this.createMealLocalDB();
@@ -69,9 +69,17 @@ export class MealService implements OnDestroy {
   }
 
   public addMeal(meal: Meal) {
+    if (this.networkService.isOnline) {
+      meal.$key = this.addMealToFireBase(meal);
+    }
     this.addMealToLocalDB(meal);
-    this.addMealToFireBase(meal);
     this._meals.push(meal);
+  }
+
+  public removeMeal(key: string) {
+    this.getMealRef(key).remove();
+    this.indexedDb.meals.delete(key);
+    this._meals = this._meals.filter(meal => meal.$key !== key);
   }
 
   public getMealRef(key: string) {
@@ -108,18 +116,18 @@ export class MealService implements OnDestroy {
     //   this.updateMeal(meal);
     // }
     this.subscriptionOfMeals.unsubscribe();
-    // this.subscriptionOfUser.unsubscribe(); TODO: Valamiért lefut szinte egyből a konstruktor után
+    this.subscriptionOfUser.unsubscribe();
   }
 
-  private addMealToFireBase(meal: Meal) {
-    this.mealsRef.push({
+  private addMealToFireBase(meal: Meal): string {
+    return this.mealsRef.push({
       user_id: this.uid,
       name: meal.name,
       src: meal.src,
       rate: meal.rate,
       date: meal.date.getTime(),
       where: meal.where
-    });
+    }).key;
   }
 
   private addMealToLocalDB(meal: Meal) {
@@ -173,15 +181,6 @@ export class MealService implements OnDestroy {
       this.syncDb.meals.delete(meal.$key).then(() => {
         this.addMealToFireBase(meal);
         console.log(`Meal ${meal.$key} sent and deleted locally`);
-      });
-    });
-  }
-
-  private async clearIndexedDB() {
-    const allItems: Meal[] = await this.indexedDb.meals.toArray();
-    allItems.forEach((meal: Meal) => {
-      this.indexedDb.meals.delete(meal.$key).then(() => {
-        console.log(`Meal ${meal.$key} deleted locally for update`);
       });
     });
   }

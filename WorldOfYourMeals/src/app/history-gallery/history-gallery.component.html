@@ -54,6 +54,7 @@
       <p>Latitude: <br> {{selectedMeal.where.lat}}</p>
       <p>Longitude: <br> {{selectedMeal.where.lng}}</p> <br>
       <button [hidden]="!isOnline()" (click)="jump()">Jump to the marker</button>
+<!--      <button [hidden]="!isOnline()" (click)="remove(selectedMeal.$key)">Remove</button>-->
     </div>
   </div>
 </ng-template>

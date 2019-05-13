@@ -93,4 +93,9 @@ export class HistoryGalleryComponent implements OnInit, OnDestroy, AfterViewInit
   isOnline() {
     return !!window.navigator.onLine;
   }
+
+  remove(key: string) {
+    this.modalRef.hide();
+    this.mealService.removeMeal(key);
+  }
 }

@@ -33,6 +33,14 @@ import {MealFormComponent} from './meal-form/meal-form.component';
 import {LocationModalComponent} from './location-modal/location-modal.component';
 
 
+import {OnlineOfflineService} from './online-offline.service';
+import {AuthorizationService} from './authorization.service';
+import {ScrollerService} from './scroller.service';
+import {MealService} from './meal.service';
+import {CompressorService} from './compressor.service';
+import {UpdateService} from './update.service';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -68,7 +76,14 @@ import {LocationModalComponent} from './location-modal/location-modal.component'
     AngularFireAuthModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
-  providers: [],
+  providers: [
+    OnlineOfflineService,
+    AuthorizationService,
+    ScrollerService,
+    MealService,
+    CompressorService,
+    UpdateService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

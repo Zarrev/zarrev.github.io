@@ -1,4 +1,4 @@
-import {Component, OnInit, TemplateRef} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MealService} from '../meal.service';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Marker} from '../marker.interface';
@@ -6,7 +6,7 @@ import {Location} from '@angular/common';
 import {BsDatepickerConfig} from 'ngx-bootstrap';
 import {LocationModalComponent} from '../location-modal/location-modal.component';
 import * as uuid from 'uuid';
-
+import {CompressorService} from '../compressor.service';
 
 @Component({
   selector: 'app-meal-form',
@@ -32,7 +32,8 @@ export class MealFormComponent implements OnInit {
     return null;
   }
 
-  constructor(private mealService: MealService, private location: Location, private formBuilder: FormBuilder) {
+  constructor(private mealService: MealService, private location: Location, private formBuilder: FormBuilder,
+              private compresser: CompressorService) {
     this._messageForm = this.formBuilder.group({
       nameOfFood: ['', Validators.required],
       pictureUrl: [this._picture, null],
@@ -114,12 +115,22 @@ export class MealFormComponent implements OnInit {
   readUrl(event: any) {
     if (event.target.files && event.target.files[0]) {
       const reader = new FileReader();
-
+      const img = new Image();
       reader.onload = (eventOther: any) => {
         this._picture = eventOther.target.result;
+        // img.src = eventOther.target.result;
+        // const elem = document.createElement('canvas');
+        // elem.width = 720;
+        // elem.height = img.height * (elem.width / img.width);
+        // const ctx = elem.getContext('2d');
+        // ctx.drawImage(img, 0, 0, elem.width, elem.height);
+        // this._picture = ctx.canvas.toDataURL('image/jpeg', 1);
       };
-
       reader.readAsDataURL(event.target.files[0]);
+      this.compresser.compress(event.target.files[0]).subscribe(compressed => {
+        this._picture = compressed;
+      });
+
     }
   }
 
