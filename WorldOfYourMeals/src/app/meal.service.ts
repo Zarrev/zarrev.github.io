@@ -24,21 +24,24 @@ export class MealService implements OnDestroy {
 
   constructor(private db: AngularFireDatabase, private auth: AuthorizationService, private networkService: OnlineOfflineService) {
     this.registerToEvents();
-    this.createDatabase();
+    this.createDatabases();
     this.loadMealsFromIndexedDb();
     this.subscriptionOfUser = this.auth.getUser$().subscribe(user => {
         this.uid = user.uid;
         if (this.uid !== undefined && this.uid != null) {
           this.subscriptionOfMeals = this.getMealsRef().snapshotChanges().subscribe(data => {
             if (data.length > this._meals.length) {
-              this.clearIndexedDB();
-              data.forEach(item => {
-                // @ts-ignore
-                const aMeal: Meal = item.payload.toJSON();
-                aMeal.$key = item.key;
-                aMeal.date = new Date(aMeal.date);
-                this._meals.push(aMeal as Meal);
-                this.addMealToLocalDB(aMeal as Meal);
+              this._meals = [];
+              this.indexedDb.delete().then(() => {
+                this.createMealLocalDB();
+                data.forEach(item => {
+                  // @ts-ignore
+                  const aMeal: Meal = item.payload.toJSON();
+                  aMeal.$key = item.key;
+                  aMeal.date = new Date(aMeal.date);
+                  this._meals.push(aMeal as Meal);
+                  this.addMealToLocalDB(aMeal as Meal);
+                });
               });
             }
           });
@@ -143,18 +146,25 @@ export class MealService implements OnDestroy {
     }
   }
 
-  private createDatabase() {
+  private createMealLocalDB() {
     const dbName = 'MealLocalDB';
     this.indexedDb = new Dexie(dbName);
     this.indexedDb.version(1).stores({
       meals: '$key,src,name,rate,date,where,fitBounds'
     });
+  }
 
+  private createSyncLocalDB() {
     const syncName = 'SyncLocalDB';
     this.syncDb = new Dexie(syncName);
     this.syncDb.version(1).stores({
       meals: '$key,src,name,rate,date,where,fitBounds'
     });
+  }
+
+  private createDatabases() {
+    this.createMealLocalDB();
+    this.createSyncLocalDB();
   }
 
   private async sendMealsFromSyncDBTOCloud() {
@@ -167,10 +177,10 @@ export class MealService implements OnDestroy {
     });
   }
 
-  private clearIndexedDB() {
-    const allItems: Meal[] = this.indexedDb.meals.toArray();
+  private async clearIndexedDB() {
+    const allItems: Meal[] = await this.indexedDb.meals.toArray();
     allItems.forEach((meal: Meal) => {
-      this.syncDb.meals.delete(meal.$key).then(() => {
+      this.indexedDb.meals.delete(meal.$key).then(() => {
         console.log(`Meal ${meal.$key} deleted locally for update`);
       });
     });

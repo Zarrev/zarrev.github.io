@@ -5,6 +5,7 @@ import {Marker} from '../marker.interface';
 import {Location} from '@angular/common';
 import {BsDatepickerConfig} from 'ngx-bootstrap';
 import {LocationModalComponent} from '../location-modal/location-modal.component';
+import * as uuid from 'uuid';
 
 
 @Component({
@@ -52,7 +53,8 @@ export class MealFormComponent implements OnInit {
     }
 
     this._success = true;
-    this.mealService.addMeal({$key: '0', src: this._picture, name: this._messageForm.value.nameOfFood,
+    // TODO: testing in offline add meail after that is it sync? or still buggy?
+    this.mealService.addMeal({$key:  uuid.v4(), src: this._picture, name: this._messageForm.value.nameOfFood,
       rate: this._messageForm.value.rate, date: this._messageForm.value.date, where: this._marker});
     this.location.back();
   }
