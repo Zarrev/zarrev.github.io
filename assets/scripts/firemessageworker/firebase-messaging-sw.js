@@ -19,7 +19,7 @@
  // Initialize the Firebase app in the service worker by passing in the
  // messagingSenderId.
  firebase.initializeApp({
-   'messagingSenderId': '704721575138'
+   'messagingSenderId': 'senderID' // TODO: Ha használni akarom, akkor le kell cserélni!
  });
  // Retrieve an instance of Firebase Messaging so that it can handle background
  // messages.
