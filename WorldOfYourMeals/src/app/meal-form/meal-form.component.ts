@@ -54,7 +54,6 @@ export class MealFormComponent implements OnInit {
     }
 
     this._success = true;
-    // TODO: testing in offline add meail after that is it sync? or still buggy?
     this.mealService.addMeal({$key:  uuid.v4(), src: this._picture, name: this._messageForm.value.nameOfFood,
       rate: this._messageForm.value.rate, date: this._messageForm.value.date, where: this._marker});
     this.location.back();
