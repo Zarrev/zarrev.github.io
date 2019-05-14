@@ -13,6 +13,9 @@ export class UpdateService {
     const appIsStable$ = appRef.isStable.pipe(first(isStable => isStable === true));
     const everySixHours$ = interval(60 * 1000); // TODO: 6 órára vissza irni | most percre van állítva a testhez
     const everySixHoursOnceAppIsStable$ = concat(appIsStable$, everySixHours$);
-    everySixHoursOnceAppIsStable$.subscribe(() => updates.checkForUpdate());
+    everySixHoursOnceAppIsStable$.subscribe(() => {
+      updates.checkForUpdate();
+      console.log('UpdateService has checked for updates of service worker.');
+    });
   }
 }

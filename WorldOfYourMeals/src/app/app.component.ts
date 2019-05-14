@@ -15,12 +15,14 @@ export class AppComponent {
 
   constructor(private updateService: UpdateService, private swUpdate: SwUpdate) {
     this.swUpdate.available.subscribe((event) => {
+      console.log('Update is available to SW.');
       this.update = true;
     });
   }
 
   updateAndClose(): void {
     this.swUpdate.activateUpdate().then(() => {
+      console.log('SW has updated.');
       Dexie.delete('MealLocalDB');
       document.location.reload();
     });
